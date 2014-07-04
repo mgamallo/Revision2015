@@ -136,7 +136,7 @@ public class VentanaExtraer extends JFrame{
         jPanelC.setLayout(new FlowLayout());
         jPanelS.setLayout(new FlowLayout());
         
-        jPanelC.add(campoNHC);
+        jPanelC.add(campoNHC); 
         jPanelC.add(espacio1);
         jPanelC.add(comboServicios);
         jPanelC.add(espacio2);
