@@ -1,5 +1,6 @@
+import java.awt.AWTException;
+import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Robot;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 
@@ -15,19 +17,27 @@ class Worker extends SwingWorker<Double, Integer>{
 
 	JProgressBar progresoNHCs;
 	JProgressBar progresoServicios;
-	JProgressBar progresoNombres;	
+	JProgressBar progresoNombres;
+	JProgressBar progresoRenombrar;
 	
+	JTextField textoPdfExaminado;
+	
+	VentanaProgreso vProgreso;
 	CargaListaPdfs pdfs;
 	int visualizacion;
 	
 
-	public Worker(CargaListaPdfs pdfs, int visualizacion, JProgressBar progresoNHCs, JProgressBar progresoServicios, JProgressBar progresoNombres){
+	public Worker(VentanaProgreso vProgreso,CargaListaPdfs pdfs, int visualizacion, JProgressBar progresoNHCs, JProgressBar progresoServicios, JProgressBar progresoNombres, JProgressBar progresoRenombrar, JTextField textoPdfExaminado){
 		this.progresoNHCs = progresoNHCs;
 		this.progresoServicios = progresoServicios;
 		this.progresoNombres = progresoNombres;
+		this.progresoRenombrar = progresoRenombrar;
+		
+		this.textoPdfExaminado = textoPdfExaminado;
 		
 		this.pdfs = pdfs;
 		this.visualizacion = visualizacion;
+		this.vProgreso = vProgreso;
 	}
 	
 	
@@ -50,7 +60,8 @@ class Worker extends SwingWorker<Double, Integer>{
 		
 		for(int i=0;i<aux;i++){
 			Inicio.listaDocumentos[i] = new Documento(pdfs.ficheros[i].getAbsolutePath());
-			System.out.println(Inicio.listaDocumentos[i].rutaArchivo);
+			Inicio.listaDocumentos[i].getNhc();
+			publish( i*100/aux,0,0,0,i);
 		}
 		
 		for(int i=0;i<aux;i++){
@@ -59,11 +70,10 @@ class Worker extends SwingWorker<Double, Integer>{
 					break;
 				}
 			}
-			// publish( Porcentaje NHC, PorcentajeDocumentos, PorcentajeServicios)
-			Robot robot = new Robot();
-			robot.delay(400);
-			System.out.println("Pdf número..." + i );
-			publish( i,0,0);
+			// publish( Porcentaje NHC, PorcentajeDocumentos, PorcentajeServicios, PorcentajeRenombrar, nº de pdf)
+
+			System.out.println("Pdf número nhc..." + i );
+			publish( 0,i*100/aux,0,0,i);
 		}
 		
 		System.out.println("Segunda tanda de reconocimiento...");
@@ -97,9 +107,7 @@ class Worker extends SwingWorker<Double, Integer>{
 			
 			System.out.println("Publico... " + i);
 			
-			Robot robot = new Robot();
-			robot.delay(50);
-			publish(i,i/aux*100,10);
+			publish(100,i*100/aux,0,0,i);
 		}
 		
 		
@@ -170,10 +178,11 @@ class Worker extends SwingWorker<Double, Integer>{
 					System.out.println("Toas las demas");
 					Inicio.listaDocumentos[j].servicio = servicioPosible;
 				}
-				Robot robot = new Robot();
-				robot.delay(100);
-				publish(100,j,100);
+
+				
 			}
+			
+			publish(100,100,i*100/Inicio.listaDocumentos.length,0,0);
 			
 			i= Inicio.separadores.get(numSeparador) -1 ;
 			numSeparador++;
@@ -185,6 +194,8 @@ class Worker extends SwingWorker<Double, Integer>{
 		for(int i=0;i<Inicio.listaDocumentos.length;i++){
 			if(!Inicio.listaDocumentos[i].renombraFichero(Inicio.listaDocumentos[0]))
 				errores++;
+
+			publish(100,100,100,i*100/Inicio.listaDocumentos.length,i);
 		}
 		
 		System.out.println(errores + " errores");
@@ -304,7 +315,7 @@ class Worker extends SwingWorker<Double, Integer>{
 	protected void done(){
 		System.out.println("hecho");
 		Inicio.progreso = true;
-		//progresoNHCs.setValue(75);
+		vProgreso.dispose();
 	}
 	
 	@Override
@@ -313,7 +324,20 @@ class Worker extends SwingWorker<Double, Integer>{
                 + Thread.currentThread().getName());
         progresoNHCs.setValue(chunks.get(0));
         progresoServicios.setValue(chunks.get(1));
-        progresoNombres.setValue(60);
+        progresoNombres.setValue(chunks.get(2));
+        progresoRenombrar.setValue(chunks.get(3));
+        
+        File file = new File(Inicio.listaDocumentos[chunks.get(4)].rutaArchivo);
+        
+
+		if(file.getName().length() > 40){
+			textoPdfExaminado.setFont(new Font("TimesRoman", Font.BOLD, 12));
+		}
+		else{
+			textoPdfExaminado.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		}
+        
+        textoPdfExaminado.setText(file.getName());
     }
 	
 }

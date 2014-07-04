@@ -66,11 +66,19 @@ public class VentanaExtraer extends JFrame{
         for(int i=0;i<Inicio.excel.listaServicios.length;i++){
             comboServicios.addItem(Inicio.excel.listaServicios[i]);
         }
-        
+        comboServicios.addItem("Des");
+        if(Inicio.documentacionDeUrgencias){
+        	comboServicios.setSelectedItem("URG");
+        }
+        else{
+        	comboServicios.setSelectedItem(Inicio.jBServiciop.getText());
+        }
         
         for(int i=0;i<Inicio.excel.listaDocumentos.length;i++){
             comboNombres.addItem(Inicio.excel.listaDocumentos[i]);
         }
+        
+        campoNHC.grabFocus();
         
         campoRuta.setText(Inicio.listaDocumentos[Inicio.numeroPdf].rutaArchivo);
         
@@ -115,7 +123,10 @@ public class VentanaExtraer extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
-				Inicio.ventanaA3.habilitarTeclas(Inicio.ventanaA3.jBDeshabilitar.getText());
+				if(Inicio.ventanaA3 != null){
+					Inicio.ventanaA3.habilitarTeclas(Inicio.ventanaA3.jBDeshabilitar.getText());
+				}
+
 				Inicio.ventanaExtraer.dispose();
 			}
 		});
@@ -146,6 +157,8 @@ public class VentanaExtraer extends JFrame{
         
         Rectangle rectangulo = Inicio.ventanaCompacta.getBounds();
         setLocation(rectangulo.x,rectangulo.y + rectangulo.height);
+        
+        requestFocus();
         
         pack();
 	}

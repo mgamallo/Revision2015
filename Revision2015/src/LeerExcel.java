@@ -60,16 +60,26 @@ public class LeerExcel {
 	        Workbook archivoExcel = Workbook.getWorkbook(new File(archivo));
 		
 	        Sheet hoja = archivoExcel.getSheet(0);
-	        int numColumnas =hoja.getColumns();
+	        int numColumnas = 1;
 	        int numFilas = hoja.getRows();
 	        
-	        //System.out.println("El numero de columnas es... " + numColumnas);
+	        
+	        
+            while(!hoja.getCell(numColumnas,0).getContents().toString().contains("Nombre que aparece")){
+            	numColumnas++;
+            }
+            numColumnas++;
+	        
+            System.out.println("El numero de columnas es... " + numColumnas);
 	        
 	        numServicios = numColumnas-3;
+	        
+	        System.out.println("El numero de servicios es..." + numServicios);
+	        
 	        numDocumentos = numFilas-1;
 	        
 	        tablaDocumentos = new String[numFilas][numColumnas];
-	        listaServicios = new String[numColumnas-3];
+	        listaServicios = new String[numServicios];
 	        listaDocumentos = new String[numFilas-1];
 	        
 	        for (int fila=0;fila<numFilas;fila++){
@@ -91,7 +101,7 @@ public class LeerExcel {
 	        }
 	        
 	        listaServiciosLista = new DefaultListModel();
-	        for(int i=0;i<numColumnas-4;i++){
+	        for(int i=0;i<numServicios;i++){
 	        	System.out.println(listaServicios[i].toString());
 	        	listaServiciosLista.addElement(listaServicios[i]);
 	        }

@@ -43,14 +43,17 @@ public class Documento {
 		this.rutaArchivo = rutaArchivo;
 		mapa = new Mapa(rutaArchivo);
 		cadenaOCR = mapa.textoPag1;
-		nhc = mapa.nhc;
-		fisica = mapa.fisica;
+		// nhc = mapa.nhc;
+		// fisica = mapa.fisica;
 		/* Si no localizamos el nhc, luego lo mapeamos, primero con la ayuda de saber
 		   que documento es, luego, fuerza bruta.
 		 */
 	}
 
-	
+	public void getNhc(){
+		nhc = mapa.nhc;
+		fisica = mapa.fisica;
+	}
 	
 	boolean reDetectorNHCUrgencias(){
 		if(nhc.contains("ERROR") || nhc.contains("NO")){
