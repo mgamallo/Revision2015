@@ -41,7 +41,7 @@ public class VentanaNombresYServicios extends JFrame{
 		DefaultListModel dLM = new DefaultListModel();
 		dLM.removeAllElements();
 		dLM = Inicio.excel.listaServiciosLista;
-		dLM.addElement("Des");
+		dLM.addElement(Inicio.DES);
 		
 		Inicio.jLServicios.setModel(dLM);
         Inicio.jLServicios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -56,7 +56,7 @@ public class VentanaNombresYServicios extends JFrame{
 		
         
 		if(Inicio.documentacionDeUrgencias){
-	        Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("URG"));
+	        Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.URG));
 		}
 		else{
 	        Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.jLServicios.getSelectedValue().toString()));
@@ -189,16 +189,16 @@ public class VentanaNombresYServicios extends JFrame{
 			//     renombraServicios();
 		}
 		else{
-			if(Inicio.jBServicio.getText().equals("CIA")){
+			if(Inicio.jBServicio.getText().equals(Inicio.CIA)){
 				if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas > 2){
 					Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado = "Quirófano";
 					Inicio.jBNombreDoc.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
 					Inicio.jBNombreDocp.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
 				}
 			}
-			if(Inicio.jBServicio.getText().equals("HOSP")){
+			if(Inicio.jBServicio.getText().equals(Inicio.HOSP)){
 				if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas > 2){
-					Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado = "Hospitalización";
+					Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado = Inicio.HOSPITALIZACION;
 					Inicio.jBNombreDoc.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
 					Inicio.jBNombreDocp.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
 				}

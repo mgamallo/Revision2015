@@ -4,7 +4,7 @@ public class Excepciones {
 	static public boolean excepcionesIngresos(int numPdf) {
 		// TODO Auto-generated method stub
 		if(Inicio.listaDocumentos[numPdf].nombreNormalizado.equals(Inicio.CONSENTIMIENTO) ){
-			if(Inicio.listaDocumentos[numPdf].servicio.equals("HOSP")){
+			if(Inicio.listaDocumentos[numPdf].servicio.equals(Inicio.HOSP)){
 				Inicio.listaDocumentos[numPdf].servicio = "X";
 			}
 			
@@ -13,7 +13,7 @@ public class Excepciones {
 			return true;
 		}
 		if(Inicio.listaDocumentos[numPdf].nombreNormalizado.equals(Inicio.CRIBADO)){
-			Inicio.listaDocumentos[numPdf].servicio = "ORL";
+			Inicio.listaDocumentos[numPdf].servicio = Inicio.ORLC;
 			
 			System.out.println("Esta es una excepción al ingreso");
 			

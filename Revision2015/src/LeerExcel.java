@@ -485,7 +485,7 @@ public class LeerExcel {
         String[] vinculaciones = new String[numVinculaciones];
         int aux=0;
         for(int i = 1; i<numDocumentos;i++){
-            if(tablaDocumentos[i][numServicio].toString().equals("x")){
+            if(!tablaDocumentos[i][numServicio].toString().equals("")){
                 vinculacionServicio[aux]= tablaDocumentos[i][0].toString();
                 aux++;
             }

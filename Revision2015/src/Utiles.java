@@ -11,6 +11,8 @@ public class Utiles {
 	
 	
 
+
+
 	public void ventanaRenombrarServicios() {
 		// TODO Auto-generated method stub
 		
@@ -41,18 +43,18 @@ public class Utiles {
 					}
 
 						//	Comprobamos si el servicio es anestesia para hacer el cambio anrc - carc
-						if(Inicio.jBServicio.getText().equals("ANR")){
+						if(Inicio.jBServicio.getText().equals(Inicio.ANRC)){
 							if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.EKG)){
-								Inicio.listaDocumentos[j].servicio = "CAR";
+								Inicio.listaDocumentos[j].servicio = Inicio.CARC;
 							}
 							else{
 								Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 							}
 						}
 						
-						else if(Inicio.jBServicio.getText().equals("ORL")){
+						else if(Inicio.jBServicio.getText().equals(Inicio.ORLC)){
 							if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.EKG)){
-								Inicio.listaDocumentos[j].nombreNormalizado = "Videonistagmografía";
+								Inicio.listaDocumentos[j].nombreNormalizado = Inicio.VIDEONISTAGMOGRAFÍA;
 							}
 							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 						}
@@ -88,9 +90,9 @@ public class Utiles {
 						
 						*/
 						
-						else if(Inicio.jBServicio.getText().equals("DER") || Inicio.jBServicio.getText().equals("ETM") ){
+						else if(Inicio.jBServicio.getText().equals(Inicio.DERC) || Inicio.jBServicio.getText().equals(Inicio.ETMC) ){
 							if(Inicio.listaDocumentos[j].nombreNormalizado.equals("Enfermería quirúrgica")){
-								Inicio.listaDocumentos[j].servicio = "CIA";
+								Inicio.listaDocumentos[j].servicio = Inicio.CIA;
 							}
 							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 						}

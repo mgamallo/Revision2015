@@ -454,7 +454,7 @@ public class VentanaIntegral extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(!Inicio.jBServicio.equals("X") && !Inicio.jBServicio.equals("Des")){
+				if(!Inicio.jBServicio.equals("X") && !Inicio.jBServicio.equals(Inicio.DES)){
 					Inicio.utiles.renombraServicios();	
 					Inicio.jLServicios.setSelectedValue(Inicio.jBServicio.getText(), true);
 					Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.jBServicio.getText()));
@@ -494,7 +494,7 @@ public class VentanaIntegral extends javax.swing.JFrame {
         // jBFijarServicio.setPreferredSize(new Dimension(10,10));
         // jBFijarNombres.setPreferredSize(new Dimension(10,10));
         
-        jBCons.setText("CONS");
+        jBCons.setText(Inicio.CONS);
         jBCons.setBackground(new Color(80,200,120));
         jBCons.addActionListener(new ActionListener() {
 			
@@ -502,14 +502,14 @@ public class VentanaIntegral extends javax.swing.JFrame {
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("Des", true);
+   				Inicio.jLServicios.setSelectedValue(Inicio.DES, true);
    				Inicio.utiles.actualizaServicio();
    				jPanel1.requestFocus();
    				new Acrobat().getFocus();
    			}
    		});
 
-        jBHosp.setText("HOSP");
+        jBHosp.setText(Inicio.HOSP);
         jBHosp.setBackground(new Color(80,200,120));
         jBHosp.addActionListener(new ActionListener() {
 			
@@ -517,15 +517,15 @@ public class VentanaIntegral extends javax.swing.JFrame {
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("HOSP", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("HOSP"));
+   				Inicio.jLServicios.setSelectedValue(Inicio.HOSP, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.HOSP));
    				Inicio.utiles.actualizaServicio();
    				jPanel1.requestFocus();
    				new Acrobat().getFocus();
    			}
    		});
 
-        jBCia.setText("CIA");
+        jBCia.setText(Inicio.CIA);
         jBCia.setBackground(new Color(80,200,120));
         jBCia.addActionListener(new ActionListener() {
 			
@@ -533,8 +533,8 @@ public class VentanaIntegral extends javax.swing.JFrame {
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("CIA", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("CIA"));
+   				Inicio.jLServicios.setSelectedValue(Inicio.CIA, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.CIA));
    				Inicio.utiles.actualizaServicio();
    				jPanel1.requestFocus();
    				new Acrobat().getFocus();
@@ -771,26 +771,26 @@ public class VentanaIntegral extends javax.swing.JFrame {
         );
 
         jBAnr.setBackground(new java.awt.Color(255, 255, 51));
-        jBAnr.setText("ANR");
+        jBAnr.setText(Inicio.ANRC);
         jBAnr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	Inicio.jLServicios.setSelectedValue("ANR", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("ANR"));
+            	Inicio.jLServicios.setSelectedValue(Inicio.ANRC, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.ANRC));
    				Inicio.utiles.actualizaServicio();
    				jPanel1.requestFocus();
             }
         });
 
         jBCar.setBackground(new java.awt.Color(255, 255, 51));
-        jBCar.setText("CAR");
+        jBCar.setText(Inicio.CARC);
         jBCar.addActionListener(new ActionListener() {
 			
    			@Override
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("CAR", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("CAR"));
+   				Inicio.jLServicios.setSelectedValue(Inicio.CARC, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.CARC));
    				Inicio.utiles.actualizaServicio();
    				jPanel1.requestFocus();
    			}
@@ -854,7 +854,7 @@ public class VentanaIntegral extends javax.swing.JFrame {
         Inicio.jLNombresDoc.setBackground(new java.awt.Color(255, 255, 204));
         Inicio.jLNombresDoc.setFont(new java.awt.Font("Serif", 1, 16)); // NOI18N
 		if(Inicio.documentacionDeUrgencias){
-	        Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("URG"));
+	        Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.URG));
 		}
 		else{
 	        Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.jLServicios.getSelectedValue().toString()));
@@ -1150,8 +1150,8 @@ public class VentanaIntegral extends javax.swing.JFrame {
 				// System.out.println("Hola estoy pulsando la r en la ventana compacta");
 				
 				new Acrobat().rotarPagina();
-				if ((Inicio.jBServicio.getText().equals("CAR") || Inicio.jBServicio
-						.getText().equals("ANR"))
+				if ((Inicio.jBServicio.getText().equals(Inicio.CARC) || Inicio.jBServicio
+						.getText().equals(Inicio.ANRC))
 						&& Inicio.jBNombreDoc.getText().equals("X")) {
 					// if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas
 					// <= 2){
@@ -1161,8 +1161,8 @@ public class VentanaIntegral extends javax.swing.JFrame {
 						Inicio.jBServiciop.setText("URG");
 						Inicio.jBServicio.setText("URG");
 					}else{
-						Inicio.jBServiciop.setText("CAR");
-						Inicio.jBServicio.setText("CAR");
+						Inicio.jBServiciop.setText(Inicio.CARC);
+						Inicio.jBServicio.setText(Inicio.CARC);
 					}
 					Inicio.jBNombreDocp.setBackground(Color.green);
 					Inicio.jBNombreDoc.setBackground(Color.green);

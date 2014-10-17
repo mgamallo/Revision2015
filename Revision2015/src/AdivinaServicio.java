@@ -50,10 +50,10 @@ public class AdivinaServicio {
 				}
 			}
 			if(numEkgs > 3 && numCursoClinico <3){
-				maximoServicio = "CAR";
+				maximoServicio = Inicio.CARC;
 			}
 			else if(numEkgs > 3 && numCursoClinico >= 3){
-				maximoServicio = "NRL";
+				maximoServicio = Inicio.NRLC;
 			}
 		}
 		

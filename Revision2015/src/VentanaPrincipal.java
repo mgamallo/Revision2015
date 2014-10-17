@@ -18,7 +18,8 @@ import es.mgamallo.firma.VentanaDialogoSinFileChooser;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    /**
+
+	/**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
@@ -188,7 +189,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        jButton1.setText("HOSP");
+        jButton1.setText(Inicio.HOSP);
         jButton1.setBackground(new Color(80,200,120));
         jButton1.addActionListener(new ActionListener() {
 			
@@ -196,13 +197,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("HOSP", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("HOSP"));
+   				Inicio.jLServicios.setSelectedValue(Inicio.HOSP, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.HOSP));
    				Inicio.utiles.actualizaServicio();
    			}
    		});
 
-        jButton2.setText("CIA");
+        jButton2.setText(Inicio.CIA);
         jButton2.setBackground(new Color(80,200,120));
         jButton2.addActionListener(new ActionListener() {
 			
@@ -210,25 +211,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("CIA", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("CIA"));
+   				Inicio.jLServicios.setSelectedValue(Inicio.CIA, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.CIA));
    				Inicio.utiles.actualizaServicio();
    			}
    		});
 
-        jButton3.setText("Des");
+        jButton3.setText(Inicio.DES);
         jButton3.addActionListener(new ActionListener() {
 			
    			@Override
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("Des", true);
+   				Inicio.jLServicios.setSelectedValue(Inicio.DES, true);
    				Inicio.utiles.actualizaServicio();
    			}
    		});
 
-        jButton4.setText("ANR");
+        jButton4.setText(Inicio.ANRC);
         jButton4.setBackground(Color.yellow);
         jButton4.addActionListener(new ActionListener() {
 			
@@ -236,13 +237,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("ANR", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("ANR"));
+   				Inicio.jLServicios.setSelectedValue(Inicio.ANRC, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.ANRC));
    				Inicio.utiles.actualizaServicio();
    			}
    		});
 
-        jButton5.setText("CAR");
+        jButton5.setText(Inicio.CARC);
         jButton5.setBackground(Color.yellow);
         jButton5.addActionListener(new ActionListener() {
 			
@@ -250,8 +251,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    			public void actionPerformed(ActionEvent e) {
    				// TODO Auto-generated method stub
    				
-   				Inicio.jLServicios.setSelectedValue("CAR", true);
-   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("CAR"));
+   				Inicio.jLServicios.setSelectedValue(Inicio.CARC, true);
+   				Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.CARC));
    				Inicio.utiles.actualizaServicio();
    			}
    		});
@@ -262,7 +263,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(!Inicio.jBServicio.equals("X") && !Inicio.jBServicio.equals("Des")){
+				if(!Inicio.jBServicio.equals("X") && !Inicio.jBServicio.equals(Inicio.DES)){
 					Inicio.utiles.renombraServicios();	
 					Inicio.jLServicios.setSelectedValue(Inicio.jBServicio.getText(), true);
 					Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.jBServicio.getText()));
@@ -334,7 +335,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 			dLM.remove(dLM.getSize()-1);
 		}
 		
-		dLM.addElement("Des");
+		dLM.addElement(Inicio.DES);
 		
 		for(int i=dLM.size()-1;i>= 0;i--){
 			System.out.println(dLM.get(i).toString());

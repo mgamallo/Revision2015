@@ -696,19 +696,19 @@ public class VentanaCompacta extends javax.swing.JFrame {
 				// System.out.println("Hola estoy pulsando la r en la ventana compacta");
 				
 				new Acrobat().rotarPagina();
-				if ((Inicio.jBServicio.getText().equals("CAR") || Inicio.jBServicio
-						.getText().equals("ANR") || Inicio.documentacionDeUrgencias)
+				if ((Inicio.jBServicio.getText().equals(Inicio.CARC) || Inicio.jBServicio
+						.getText().equals(Inicio.ANRC) || Inicio.documentacionDeUrgencias)
 						&& Inicio.jBNombreDoc.getText().equals("X")) {
 					// if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas
 					// <= 2){
 					Inicio.jBNombreDocp.setText(Inicio.EKG);
 					Inicio.jBNombreDoc.setText(Inicio.EKG);
 					if(Inicio.documentacionDeUrgencias){
-						Inicio.jBServiciop.setText("URG");
-						Inicio.jBServicio.setText("URG");
+						Inicio.jBServiciop.setText(Inicio.URG);
+						Inicio.jBServicio.setText(Inicio.URG);
 					}else{
-						Inicio.jBServiciop.setText("CAR");
-						Inicio.jBServicio.setText("CAR");
+						Inicio.jBServiciop.setText(Inicio.CARC);
+						Inicio.jBServicio.setText(Inicio.CARC);
 					}
 
 					Inicio.jBNombreDocp.setBackground(Color.green);

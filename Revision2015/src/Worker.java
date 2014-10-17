@@ -129,10 +129,10 @@ class Worker extends SwingWorker<Double, Integer>{
 			for(int j=i;j<Inicio.separadores.get(numSeparador);j++){
 				
 				//Comprobamos si el servicio es anestesia para hacer el cambio anrc - carc
-				if(servicioPosible.equals("ANR") || servicioPosible.equals("NRL")){
+				if(servicioPosible.equals(Inicio.ANRC) || servicioPosible.equals(Inicio.NRLC)){
 					System.out.println("Anestesia o Neurologia");
 					if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.EKG)) {
-						Inicio.listaDocumentos[j].servicio = "CAR";
+						Inicio.listaDocumentos[j].servicio = Inicio.CARC;
 					}
 					else{
 						Inicio.listaDocumentos[j].servicio = servicioPosible;
@@ -141,32 +141,37 @@ class Worker extends SwingWorker<Double, Integer>{
 						
 						System.out.println("Neurologia - interconsulta");
 						
-						if(servicioPosible.equals("NRL")){
+						if(servicioPosible.equals(Inicio.NRLC)){
 							if(Inicio.listaDocumentos[j-1].nombreNormalizado.equals(Inicio.EKG) 
 									&& Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.INTERCONSULTA)) {
-								Inicio.listaDocumentos[j].servicio = "CAR";
+								Inicio.listaDocumentos[j].servicio = Inicio.CARC;
 							}
 						}
 					}
 				}
-				else if(servicioPosible.equals("ORL")){
+				else if(servicioPosible.equals(Inicio.ORLC)){
 					
 					System.out.println("Otorrino - videonistag");
 					
 					if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.EKG)){
-						Inicio.listaDocumentos[j].nombreNormalizado = "Videonistagmografía";
+						Inicio.listaDocumentos[j].nombreNormalizado = Inicio.VIDEONISTAGMOGRAFÍA;
 					}
 					Inicio.listaDocumentos[j].servicio = servicioPosible;
 				}
-
-				else if(servicioPosible.equals("CIA")){
+				else if(servicioPosible.equals(Inicio.UDOC)){
+					if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.EKG)){
+						Inicio.listaDocumentos[j].nombreNormalizado = Inicio.MAPA_DERMATOMAS;
+					}
+					Inicio.listaDocumentos[j].servicio = servicioPosible;
+				}
+				else if(servicioPosible.equals(Inicio.CIA)){
 					
 					System.out.println("CIAS toas");
 					
 					Inicio.listaDocumentos[j].servicio = servicioPosible;
 				}
 				
-				else if(servicioPosible.equals("HOSP")){
+				else if(servicioPosible.equals(Inicio.HOSP)){
 					System.out.println("Hospitalizac. menos las excepciones");
 					if(!Excepciones.excepcionesIngresos(j)){
 						Inicio.listaDocumentos[j].servicio = servicioPosible;

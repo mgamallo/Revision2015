@@ -46,7 +46,7 @@ public class VentanaMicro extends javax.swing.JFrame {
         Inicio.jBNHCp.setPreferredSize(new java.awt.Dimension(180, 60));
         Inicio.jBNHCp.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
 
-        Inicio.jBServiciop.setText("CAR");
+        Inicio.jBServiciop.setText(Inicio.CARC);
         Inicio.jBServiciop.setPreferredSize(new java.awt.Dimension(70, 60));
         Inicio.jBServiciop.setMaximumSize(new java.awt.Dimension(70, 60));
         Inicio.jBServiciop.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N

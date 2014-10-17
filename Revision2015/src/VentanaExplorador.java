@@ -1133,7 +1133,7 @@ public class VentanaExplorador extends javax.swing.JFrame {
 	public void renombraURG(){
 		//System.out.println("Renombrando servicios a urgencias");
 		for(int i=0;i < Inicio.tamañoCarpetaPdf;i++){
-				Inicio.listaDocumentos[i].servicio = "URG";
+				Inicio.listaDocumentos[i].servicio = Inicio.URG;
 			}
 	}
     

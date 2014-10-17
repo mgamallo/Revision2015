@@ -39,15 +39,35 @@ public class Inicio extends JFrame {
 	
 	static final String CONSENTIMIENTO = "Consentimento informado";
 	static final String EKG = "ECG";
-	static final String ECO = "Eco";
+	static final String ECO = "Ecografía";
+	static final String ECOCARDIOGRAFIA = "Ecocardiografía";
 	static final String MONITORIZACION = "Cardiotocografía basal";
-	static final String DOC = "Doc";
-	static final String CURSOCLINICO = "Curso clínico";
-	static final String CRIBADO = "Cribado prenatal";
+	static final String DOC = "Documento non clasificado";
+	static final String CURSOCLINICO = "Evolutivo";
+	static final String CRIBADO = "Cribado xordeira";
 	static final String HOSPITALIZACION = "Hospitalización";
 	static final String CIA = "CIA";
 	static final String INTERCONSULTA = "Interconsulta";
+	public static final String VIDEONISTAGMOGRAFÍA = "Videonistagmografía";
+	public static final String URPA = "URPA";
+	public static final String MAPA_DERMATOMAS = "Mapa dermatomas";
 	
+    public static final String CARC = "CARC";
+	public static final String ANRC = "ANRC";
+	public static final String DES = "Des";
+	public static final String HOSP = "HOSP";
+	public static final String URG = "URG";
+	public static final String NRLC = "NRLC";
+	public static final String ORLC = "ORLC";
+	
+	public static final String ETMC = "ETMC";
+	public static final String DERC = "DERC";
+	public static final String UDOC = "UDOC";
+	
+	public static final String CONS = "CONS";
+
+
+
 	
 	static boolean documentacionDeUrgencias = false;
 	

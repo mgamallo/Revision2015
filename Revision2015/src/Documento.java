@@ -321,14 +321,21 @@ public class Documento {
 				String nuevoNombrePdf = documentoInicial.rutaArchivo.substring(indexNombrePdf);
 				
 				int aux_1 = nuevoNombrePdf.lastIndexOf("_");
-				String hora = nuevoNombrePdf.substring(aux_1 + 1,aux_1 + 5);
-				System.out.println("La hora es... " + hora);
-				String fecha = nuevoNombrePdf.substring(aux_1 - 8, aux_1);
-				System.out.println("La fecha es... " + fecha);
-				
-				carpetaRenombradaAuto = "\\" + fecha + " " + hora + " " + carpeta.substring(1,carpeta.length());
-				System.out.println("Nombre carpeta renombrada auto... " + carpetaRenombradaAuto);
-				carpeta = carpetaRenombradaAuto;
+				if(aux_1 != -1){
+					String hora = nuevoNombrePdf.substring(aux_1 + 1,aux_1 + 5);
+					System.out.println("La hora es... " + hora);
+					String fecha = nuevoNombrePdf.substring(aux_1 - 8, aux_1);
+					System.out.println("La fecha es... " + fecha);
+					
+					carpetaRenombradaAuto = "\\" + fecha + " " + hora + " " + carpeta.substring(1,carpeta.length());
+					System.out.println("Nombre carpeta renombrada auto... " + carpetaRenombradaAuto);
+					carpeta = carpetaRenombradaAuto;
+				}
+				else{
+					carpetaRenombradaAuto = "\\" + "OCR " + carpeta.substring(1,carpeta.length());
+					System.out.println(carpetaRenombradaAuto);
+					carpeta = carpetaRenombradaAuto;
+				}
 			}
 		}
 		
@@ -382,7 +389,7 @@ public class Documento {
 					 nombreNormalizado.equals("EKG")){
 			*/
 			
-			if(		(servicio.equals("CAR")|| servicio.equals("ANR")) && nombreNormalizado.equals(Inicio.EKG)){
+			if(		(servicio.equals(Inicio.CARC)|| servicio.equals(Inicio.ANRC)) && nombreNormalizado.equals(Inicio.EKG)){
 				
 						// System.out.println("Es un ekg...");
 						boolean girado = false;

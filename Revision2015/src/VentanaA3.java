@@ -122,37 +122,37 @@ public class VentanaA3 extends javax.swing.JFrame {
         });
 
         //  Inicio.jBServiciop.setEnabled(false);
-        Inicio.jBServiciop.setText("HOSP");
+        Inicio.jBServiciop.setText(Inicio.HOSP);
         Inicio.jBServiciop.setBackground(Color.pink);
         Inicio.jBServiciop.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
 
         jLServicio.setText("Servicio");
 
         //  Inicio.jBNombreDocp.setEnabled(false);
-        Inicio.jBNombreDocp.setText("URPA");
+        Inicio.jBNombreDocp.setText(Inicio.URPA);
         Inicio.jBNombreDocp.setBackground(Color.pink);
         Inicio.jBNombreDocp.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
 
         jLNombreDoc.setText("Nombre Documento");
 
-        jBcia.setText("CIA");
+        jBcia.setText(Inicio.CIA);
         jBcia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	Inicio.jBServiciop.setText("CIA");
+            	Inicio.jBServiciop.setText(Inicio.CIA);
             }
         });
 
-        jBhosp.setText("HOSP");
+        jBhosp.setText(Inicio.HOSP);
         jBhosp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	Inicio.jBServiciop.setText("HOSP");
+            	Inicio.jBServiciop.setText(Inicio.HOSP);
             }
         });
 
-        jBcons.setText("CONS");
+        jBcons.setText(Inicio.CONS);
         jBcons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	Inicio.jBServiciop.setText("CONS");
+            	Inicio.jBServiciop.setText(Inicio.CONS);
             }
         });
 
@@ -188,7 +188,7 @@ public class VentanaA3 extends javax.swing.JFrame {
  			@Override
  			public void actionPerformed(ActionEvent e) {
  				// TODO Auto-generated method stub
- 				if(!Inicio.jBServicio.equals("X") && !Inicio.jBServicio.equals("Des")){
+ 				if(!Inicio.jBServicio.equals("X") && !Inicio.jBServicio.equals(Inicio.DES)){
  					renombraServicios();	
  					Inicio.jLServicios.setSelectedValue(Inicio.jBServicio.getText(), true);
  					Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio(Inicio.jBServicio.getText()));
@@ -666,41 +666,41 @@ public class VentanaA3 extends javax.swing.JFrame {
 					}
 
 						//	Comprobamos si el servicio es anestesia para hacer el cambio anrc - carc
-						if(Inicio.jBServicio.getText().equals("ANR")){
+						if(Inicio.jBServicio.getText().equals(Inicio.ANRC)){
 							if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.EKG)){
-								Inicio.listaDocumentos[j].servicio = "CAR";
+								Inicio.listaDocumentos[j].servicio = Inicio.CARC;
 							}
 							else{
 								Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 							}
 						}
-						
-						else if(Inicio.jBServicio.getText().equals("ORL")){
+				
+						else if(Inicio.jBServicio.getText().equals(Inicio.ORLC)){
 							if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.EKG)){
-								Inicio.listaDocumentos[j].nombreNormalizado = "Videonistagmografía";
+								Inicio.listaDocumentos[j].nombreNormalizado = Inicio.VIDEONISTAGMOGRAFÍA;
 							}
 							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 						}
 
-						else if(Inicio.jBServicio.getText().equals("CIA")){
+						else if(Inicio.jBServicio.getText().equals(Inicio.CIA)){
 							if(Inicio.listaDocumentos[j].fisica.numPaginas > 2){
 								Inicio.listaDocumentos[j].nombreNormalizado = "Quirófano";
 							}
 							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 						}
 						
-						else if(Inicio.jBServicio.getText().equals("HOSP")){
+						else if(Inicio.jBServicio.getText().equals(Inicio.HOSP)){
 							if(!Excepciones.excepcionesIngresos(j)){
 								if(Inicio.listaDocumentos[j].fisica.numPaginas > 2 ){
-									Inicio.listaDocumentos[j].nombreNormalizado = "Hospitalización";
+									Inicio.listaDocumentos[j].nombreNormalizado = Inicio.HOSPITALIZACION;
 								}
-								Inicio.listaDocumentos[j].servicio = "HOSP";
+								Inicio.listaDocumentos[j].servicio = Inicio.HOSP;
 							}
 							
 						}
-						else if(Inicio.jBServicio.getText().equals("DER") || Inicio.jBServicio.getText().equals("ETM") ){
+						else if(Inicio.jBServicio.getText().equals(Inicio.DERC) || Inicio.jBServicio.getText().equals(Inicio.ETMC) ){
 							if(Inicio.listaDocumentos[j].nombreNormalizado.equals("Enfermería quirúrgica")){
-								Inicio.listaDocumentos[j].servicio = "CIA";
+								Inicio.listaDocumentos[j].servicio = Inicio.CIA;
 							}
 						}
 						
@@ -843,15 +843,15 @@ public class VentanaA3 extends javax.swing.JFrame {
 				// System.out.println("Hola estoy pulsando la r en la ventana compacta");
 				
 				new Acrobat().rotarPagina();
-				if ((Inicio.jBServicio.getText().equals("CAR") || Inicio.jBServicio
-						.getText().equals("ANR"))
+				if ((Inicio.jBServicio.getText().equals(Inicio.CARC) || Inicio.jBServicio
+						.getText().equals(Inicio.ANRC))
 						&& Inicio.jBNombreDoc.getText().equals("X")) {
 					// if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas
 					// <= 2){
 					Inicio.jBNombreDocp.setText(Inicio.EKG);
 					Inicio.jBNombreDoc.setText(Inicio.EKG);
-					Inicio.jBServiciop.setText("CAR");
-					Inicio.jBServicio.setText("CAR");
+					Inicio.jBServiciop.setText(Inicio.CARC);
+					Inicio.jBServicio.setText(Inicio.CARC);
 					Inicio.jBNombreDocp.setBackground(Color.green);
 					Inicio.jBNombreDoc.setBackground(Color.green);
 					// }
