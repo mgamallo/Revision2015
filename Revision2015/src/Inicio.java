@@ -25,7 +25,9 @@ public class Inicio extends JFrame {
 	static final String RUTA = "j:/digitalización/00 documentacion/01 Escaneado"; 
 	static final String RUTAB = "h:/digitalización/00 documentacion/01 Escaneado";
 	static final String RUTAURG ="j:/DIGITALIZACIÓN/01 INFORMES URG (Colectiva)"; 
-	static final String RUTAURGB ="H:/DIGITALIZACIÓN/01 INFORMES URG (Colectiva)";	
+	static final String RUTAURGB ="H:/DIGITALIZACIÓN/01 INFORMES URG (Colectiva)";
+	
+	static String unidadHDD = "";
 	
 	static final String RUTAPC = "c:/ianus/ianus.txt"; 
 	static String nombrePc;

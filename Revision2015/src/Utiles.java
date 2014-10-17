@@ -381,6 +381,21 @@ public class Utiles {
 		}
 		*/
  
+    	JOptionPane.showMessageDialog(null, "A continuación se va a abrir el programa de formatear A3");
+    	
+		if(Inicio.A3){
+			System.out.println("Iniciando programa");
+			File archivo3 = new File("FormatoA3.jar");
+			try {
+				Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo3);
+	
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+
 	}
 
 	public void revisarPropiedadesDocumento(){

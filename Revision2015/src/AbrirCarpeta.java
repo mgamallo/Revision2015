@@ -36,6 +36,7 @@ public class AbrirCarpeta {
 		explorador.setDialogTitle("Abrir carpeta...");
 		if(!(new File(ruta).exists())){
 			ruta = rutab;
+			Inicio.unidadHDD = ruta.substring(0, 1);
 			if(Inicio.documentacionDeUrgencias){
 				String cadenaUsuario = "\\01 " + Inicio.usuario + "\\01 Escaneado";
 				ruta += cadenaUsuario;
