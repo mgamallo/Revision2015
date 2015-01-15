@@ -381,9 +381,12 @@ public class Utiles {
 		}
 		*/
  
-    	JOptionPane.showMessageDialog(null, "A continuación se va a abrir el programa de formatear A3");
+  
     	
 		if(Inicio.A3){
+			
+		  	JOptionPane.showMessageDialog(null, "A continuación se va a abrir el programa de formatear A3");
+			
 			System.out.println("Iniciando programa");
 			File archivo3 = new File("FormatoA3.jar");
 			try {
