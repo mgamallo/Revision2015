@@ -12,6 +12,9 @@ public class VentanaProgreso extends javax.swing.JFrame {
     /**
      * Creates new form VentanaProgreso
      */
+	
+	//	visualizacion:  0 ventana horizontal, 1 ventana vertical, 2 ventana A3
+	
     public VentanaProgreso(CargaListaPdfs pdfs, int visualizacion) {
         panel = new javax.swing.JPanel();
         labelNHC = new javax.swing.JLabel();

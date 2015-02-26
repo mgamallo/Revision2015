@@ -43,16 +43,16 @@ public class Inicio extends JFrame {
 	static final String EKG = "ECG";
 	static final String ECO = "Ecografía";
 	static final String ECOCARDIOGRAFIA = "Ecocardiografía";
-	static final String MONITORIZACION = "Cardiotocografía basal";
+	static final String MONITORIZACION = "Cardiotocografía";
 	static final String DOC = "Documento non clasificado";
 	static final String CURSOCLINICO = "Evolutivo";
 	static final String CRIBADO = "Cribado xordeira";
 	static final String HOSPITALIZACION = "Hospitalización";
 	static final String CIA = "CIA";
 	static final String INTERCONSULTA = "Interconsulta";
-	public static final String VIDEONISTAGMOGRAFÍA = "Videonistagmografía";
-	public static final String URPA = "URPA";
-	public static final String MAPA_DERMATOMAS = "Mapa dermatomas";
+	public static final String VIDEONISTAGMOGRAFÍA = "Videonistagmografia";
+	public static final String URPA = "Postanestesia";
+	public static final String MAPA_DERMATOMAS = "Anamnese (Mapa dermatomas)";
 	
     public static final String CARC = "CARC";
 	public static final String ANRC = "ANRC";
@@ -188,7 +188,12 @@ public class Inicio extends JFrame {
 		
 		excel = new LeerExcel();
 		
+		// JOptionPane.showMessageDialog(null, "Empezamos a leer excel documentos");
+		System.out.println("Leemos documentos.xls");
 		excel.getTablaDocumentos("Documentos.xls");
+		// JOptionPane.showMessageDialog(null, "Empezamos a leer excel coordenadas");
+		System.out.println("Leemos coordenadas R.xls");
+		excel.getPreferencias("CoordenadasR.xls");
 		
 		
 		
@@ -236,6 +241,8 @@ public class Inicio extends JFrame {
         	
         	//Inicio.coordenadasVentanas.leerCoordenadasVentana("Coordenadas.xls");
         	
+	    	System.out.println("Obtenemos preferencias del usuario");
+	    	
            	coordenadas = new PreferenciasUsuario();
            	// numeroPantallas = coordenadas.numPantallas;
         	
@@ -246,13 +253,14 @@ public class Inicio extends JFrame {
             //ventanaE = new VentanaExplorador();
             //ventanaE.setBounds(Inicio.coordenadasVentanas.vExplorador);
 
-           	
+           	/*
            	System.out.println("El numero de coordenadas es: " + coordenadas.coordenadas.length);
            	for(int i=0;i<coordenadas.coordenadas.length;i++){
            		System.out.println(i + " coordenadas: " + coordenadas.coordenadas[i].x + ", " +
            					coordenadas.coordenadas[i].y);
            	}
            	System.out.println();
+           	*/
            	
            	ventanaExplorador = new VentanaExplorador();
            	ventanaExplorador.setBounds(Inicio.coordenadas.coordenadas[0].x,Inicio.coordenadas.coordenadas[0].y,

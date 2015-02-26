@@ -825,7 +825,7 @@ public class VentanaIntegral extends javax.swing.JFrame {
         if(Inicio.documentacionDeUrgencias){
         	jListHabituales1.setModel(Inicio.excel.listaHabitualesUrg);
         }else{
-        	jListHabituales1.setModel(Inicio.excel.listaHabituales);
+        	jListHabituales1.setModel(Inicio.excel.listaHabituales1);
         }
         jListHabituales1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollHab1.setViewportView(jListHabituales1);

@@ -22,7 +22,8 @@ public class LeerExcel {
 	
 	DefaultListModel listaServiciosLista;
 	DefaultListModel listaDocumentosDLM;
-	DefaultListModel listaHabituales;
+	DefaultListModel listaComunes;
+	DefaultListModel listaHabituales1;
     DefaultListModel listaHabituales2;
     DefaultListModel listaHabitualesUrg;
     
@@ -31,7 +32,9 @@ public class LeerExcel {
     int numServicios = 0;
     int numDocumentos = 0;
     
-    String[] habituales;
+    String[][] conjuntoHabituales;
+    String[] comunes;
+    String[] habituales1;
     String[] habituales2;
     String[] habitualesUrg;
     
@@ -43,6 +46,70 @@ public class LeerExcel {
     DefaultComboBoxModel listaUsuariosUrg;
     
     boolean coordenadasGrabadas = false;
+    
+    public void getPreferencias(String archivo){
+		try {
+			WorkbookSettings wbSettings = new WorkbookSettings();
+			wbSettings.setEncoding("ISO-8859-1");
+			wbSettings.setLocale(new Locale("es", "ES"));
+			wbSettings.setExcelDisplayLanguage("ES");
+			wbSettings.setExcelRegionalSettings("ES");
+			wbSettings.setCharacterSet(CountryCode.SPAIN.getValue());
+			Workbook archivoExcel = Workbook.getWorkbook(new File(archivo));
+			
+			Sheet hoja = archivoExcel.getSheet(0);
+			
+	        int numColumnas = 0;
+	        int numFilas = 0;
+	        
+            while(!hoja.getCell(numColumnas,0).getContents().toString().equals("#finH")){
+            	numColumnas++;
+            }
+
+	        while(!hoja.getCell(0,numFilas).getContents().toString().equals("#finV")){
+	        	numFilas++;
+	        }
+			
+            tablaCoordenadas = new Object[numFilas][numColumnas];
+            
+            //	Leer coordenadas usuarios
+            for (int fila=0;fila<numFilas-1;fila++){
+                for(int columna=0;columna<numColumnas;columna++){
+                	if(hoja.getCell(columna,fila+1).getContents()!="")
+                		tablaCoordenadas[fila][columna] = hoja.getCell(columna, fila+1).getContents();
+                	else
+                		tablaCoordenadas[fila][columna] = 0;
+
+                }
+            } 
+            
+            for(int i=0;i<numFilas-1;i++){
+            	for(int j=0;j<numColumnas;j++){
+            		System.out.print(tablaCoordenadas[i][j] + "   ");
+            	}
+            	System.out.println();
+            }
+            
+//        	Leer cuadro documentos Visor
+            hoja = archivoExcel.getSheet(1);
+            int numFilasVi = hoja.getRows();
+            int numColumVi = hoja.getColumns();
+            
+            tablaVisor = new Object[numFilasVi][numColumVi];
+            
+            for (int fila=0;fila<numFilasVi;fila++){
+                    for(int columna=0;columna<numColumVi;columna++){					
+                    tablaVisor[fila][columna] = hoja.getCell(columna, fila).getContents();
+                    }
+            }
+            
+            archivoExcel.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
+    }
 	
 	void getTablaDocumentos(String archivo){
         
@@ -60,49 +127,59 @@ public class LeerExcel {
 	        Workbook archivoExcel = Workbook.getWorkbook(new File(archivo));
 		
 	        Sheet hoja = archivoExcel.getSheet(0);
-	        int numColumnas = 1;
-	        int numFilas = hoja.getRows();
+	        int numColumnas = 0;
+	        int numFilas = 0;
 	        
 	        
 	        
-            while(!hoja.getCell(numColumnas,0).getContents().toString().contains("Nombre que aparece")){
+            while(!hoja.getCell(numColumnas,0).getContents().toString().equals("@finH")){
             	numColumnas++;
             }
-            numColumnas++;
+
+	        while(!hoja.getCell(0,numFilas).getContents().toString().equals("@finV")){
+	        	numFilas++;
+	        }
+            
+         //  System.out.println("El numero de columnas es... " + numColumnas);
 	        
-            System.out.println("El numero de columnas es... " + numColumnas);
+	        numServicios = numColumnas-14;
 	        
-	        numServicios = numColumnas-3;
-	        
-	        System.out.println("El numero de servicios es..." + numServicios);
+	     //   System.out.println("El numero de servicios es..." + numServicios);
 	        
 	        numDocumentos = numFilas-1;
 	        
-	        tablaDocumentos = new String[numFilas][numColumnas];
-	        listaServicios = new String[numServicios];
-	        listaDocumentos = new String[numFilas-1];
+	    //    System.out.println("El numero de filas es..." + numFilas);
+	    //    System.out.println("El numero de documentos es..." + numDocumentos);
 	        
-	        for (int fila=0;fila<numFilas;fila++){
-                for(int columna=0;columna<numColumnas;columna++){					
-                	tablaDocumentos[fila][columna] = hoja.getCell(columna, fila).getContents();
-                	if(fila == 0){
-                		if(columna >1 && columna != numColumnas-1){
-                			listaServicios[columna-2] = hoja.getCell(columna, fila).getContents();
-                		}
-                	}
-                	if(columna == 0){
-                		if(fila >0){
-                			listaDocumentos[fila-1] = hoja.getCell(columna, fila).getContents();
-                		}
-                	}
-                		// System.out.print(tablaDocumentos[fila][columna].toString());
-                }
-                // System.out.println();
+	        tablaDocumentos = new String[numDocumentos][numServicios];
+	        listaServicios = new String[numServicios];
+	        listaDocumentos = new String[numDocumentos];
+	        
+	        //	Tabla de todos los documentos
+	        for(int fila=0;fila<numDocumentos;fila++){
+	        	for(int columna=0;columna<numServicios;columna++){
+	        		 tablaDocumentos[fila][columna] = hoja.getCell(columna+2,fila+1).getContents().toString();
+	        		// tablaDocumentos[fila][columna] = hoja.getCell(columna+2,fila).getContents().toString();
+
+	        	}
 	        }
 	        
+	        
+	        // Lista de todos los servicios
+	        for(int columna = 0;columna<numServicios;columna++){
+	        	listaServicios[columna] = hoja.getCell(columna + 2,0).getContents().toString();
+	        }
+	        
+	        // Lista de todos los nombres
+	        for(int fila = 0;fila<numDocumentos;fila++){
+	        	listaDocumentos[fila] = hoja.getCell(0,fila + 1).getContents().toString();
+	        }
+	        
+	        
+     
 	        listaServiciosLista = new DefaultListModel();
 	        for(int i=0;i<numServicios;i++){
-	        	System.out.println(listaServicios[i].toString());
+	    //    	System.out.println(listaServicios[i].toString());
 	        	listaServiciosLista.addElement(listaServicios[i]);
 	        }
 	        
@@ -114,49 +191,95 @@ public class LeerExcel {
 	        
 	        
 	    //  Leer hoja excel habituales
-            hoja=archivoExcel.getSheet(1);
-            int numFilasH = hoja.getRows();
-            habituales = new String[numFilasH];
-            listaHabituales = new DefaultListModel();
-            for(int i=0;i<numFilasH;i++){
-                listaHabituales.addElement(hoja.getCell(0, i).getContents().toString());
-                habituales[i] = listaHabituales.getElementAt(i).toString();
-            }
             
-            //  Leer hoja excel habituales2
-            hoja=archivoExcel.getSheet(2);
-            int numFilasH2 = hoja.getRows();
-            habituales2 = new String[numFilasH2];
-            listaHabituales2 = new DefaultListModel();
-            for(int i=0;i<numFilasH2;i++){
-                listaHabituales2.addElement(hoja.getCell(0, i).getContents().toString());
-                habituales2[i] = listaHabituales2.getElementAt(i).toString();
-            } 
+	        //  Habituales **********************************************
+	        // 0..... comunes
+	        // 1..... habituales 1
+	        // 2..... habituales 2
+	        // 3..... habituales urgencias
 	        
-            //  Leer hoja excel habitualesUrg
-            hoja=archivoExcel.getSheet(15);
-            int numFilasHu = hoja.getRows();
-            habitualesUrg = new String[numFilasHu];
+	        conjuntoHabituales = new String[numDocumentos][4];
+	        
+	        int numHabituales1 = 0;
+	        int numHabituales2 = 0;
+	        int numHabitualesU = 0;
+	        int numComunes = 0;
+	        
+	        listaComunes = new DefaultListModel();
+	        listaHabituales1 = new DefaultListModel();
+            listaHabituales2 = new DefaultListModel();
             listaHabitualesUrg = new DefaultListModel();
-            for(int i=0;i<numFilasHu;i++){
-                listaHabitualesUrg.addElement(hoja.getCell(0, i).getContents().toString());
-                habitualesUrg[i] = listaHabitualesUrg.getElementAt(i).toString();
-            } 
+	        
+	        for(int fila = 0; fila < numDocumentos;fila++){
+	        	for(int columna = 0;columna < 4; columna++){
+	        		conjuntoHabituales[fila][columna] = hoja.getCell(columna + numServicios + 2 + 7,fila +1).getContents().toString();
+	        		if(columna == 0){
+	        			if(conjuntoHabituales[fila][columna].toLowerCase().equals("s")){
+	        				numComunes++;
+	        				listaComunes.addElement(listaDocumentos[fila]);
+	        			}
+	        		}
+	        		else if(columna == 1){
+	        			if(conjuntoHabituales[fila][columna].toLowerCase().equals("s")){
+	        				numHabituales1++;
+	        				listaHabituales1.addElement(listaDocumentos[fila]);
+	        			}
+	        		}
+	        		else if(columna == 2){
+	        			if(conjuntoHabituales[fila][columna].toLowerCase().equals("s")){
+	        				numHabituales2++;
+	        				listaHabituales2.addElement(listaDocumentos[fila]);
+	        			}
+	        		}
+	        		else if(columna == 3){
+	        			if(conjuntoHabituales[fila][columna].toLowerCase().equals("s")){
+	        				numHabitualesU++;
+	        				listaHabitualesUrg.addElement(listaDocumentos[fila]);
+	        			}
+	        			
+	        		}
+	        	}
+	        }
+
+	        comunes = new String[numComunes];
+	        for(int i=0;i<numComunes;i++){
+	        	comunes[i] = listaComunes.getElementAt(i).toString();
+	        }
+	        habituales1 = new String[numHabituales1];
+	        for(int i=0;i<numHabituales1;i++){
+	        	habituales1[i] = listaHabituales1.getElementAt(i).toString();
+	        }
+	        habituales2 = new String[numHabituales2];
+	        for(int i=0;i<numHabituales2;i++){
+	        	habituales2[i] = listaHabituales2.getElementAt(i).toString();
+	        }
+	        habitualesUrg = new String[numHabitualesU];
+	        for(int i=0;i<numHabitualesU;i++){
+	        	habitualesUrg[i] = listaHabitualesUrg.getElementAt(i).toString();
+	        }
+
+	        /*
+	        for(int i=0;i<habituales2.length;i++){
+	        	System.out.println(habituales2[i]);
+	        }
+	        */
             
-            
-//        	Leer hoja excel usuarios
-            hoja=archivoExcel.getSheet(13); 
-            int numFilasUs = hoja.getRows();
-            System.out.println("número de filas " + numFilasUs);
-            int numColumUs = hoja.getColumns();
+//        	Leer hoja excel usuarios Documentacion
+            hoja=archivoExcel.getSheet(6); 
+            int numFilasUsDoc = 0;
+	        while(!hoja.getCell(0,numFilasUsDoc).getContents().toString().equals("#finV")){
+	        	numFilasUsDoc++;
+	        }
+            System.out.println("número de filas " + numFilasUsDoc);
             listaUsuarios = new DefaultComboBoxModel();
             listaUsuariosLista = new DefaultListModel();
-            for(int i=1;i<numFilasUs;i++){
+            for(int i=0;i<numFilasUsDoc;i++){
             	listaUsuarios.addElement(hoja.getCell(0, i).getContents().toString());
             	listaUsuariosLista.addElement(hoja.getCell(0, i).getContents().toString());
             	System.out.println(hoja.getCell(0, i).getContents().toString());
             }
                                     
+            /*
             tablaCoordenadas = new Object[numFilasUs-1][numColumUs];
             
             //	Leer coordenadas usuarios
@@ -170,25 +293,25 @@ public class LeerExcel {
                 }
             } 
             
-            
             for(int i=0;i<numFilasUs-1;i++){
             	for(int j=0;j<numColumUs;j++){
             		System.out.print(tablaCoordenadas[i][j] + "   ");
             	}
             	System.out.println();
             }
-            
+            */
             
 //        	Leer hoja excel usuariosUrgencias
-            hoja=archivoExcel.getSheet(14);
-            int numFilasUsUrg = hoja.getRows();
+            hoja=archivoExcel.getSheet(5);
+            int numFilasUsUrg = 0;
+	        while(!hoja.getCell(0,numFilasUsUrg).getContents().toString().equals("#finV")){
+	        	numFilasUsUrg++;
+	        }
             System.out.println("Numero filas urgencias " + numFilasUsUrg);
-            int numColumUsUrg = hoja.getColumns();
-            System.out.println("Numero columnas urgencias " + numColumUsUrg);
             
             listaUsuariosUrg = new DefaultComboBoxModel();
             listaUsuariosListaUrg = new DefaultListModel();
-            for(int i=1;i<numFilasUsUrg;i++){
+            for(int i=0;i<numFilasUsUrg;i++){
             	listaUsuariosUrg.addElement(hoja.getCell(0, i).getContents().toString());
             	listaUsuariosListaUrg.addElement(hoja.getCell(0, i).getContents().toString());
             	System.out.println("hoja 14 " + hoja.getCell(0, i).getContents().toString());
@@ -225,6 +348,8 @@ public class LeerExcel {
                     }
             }
 	        
+            archivoExcel.close();
+            
 		} catch (BiffException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -270,6 +395,8 @@ public class LeerExcel {
 	        
 	        for(int fila=2;fila<numFilas;fila++){
 	        	Modelo modelo = new Modelo();
+	        	
+	        	System.out.println("Fila... " + fila);
 	        	
 	        	modelo.rutaImagen = hoja.getCell(0,fila).getContents();
 	        	modelo.nombreNormalizado = hoja.getCell(1,fila).getContents();
@@ -319,8 +446,10 @@ public class LeerExcel {
 	        	
 	        	
 	        	listaModelos.add(modelo);
-	        	
+
 	        }
+	        
+        	archivoExcel.close();
 	        
 	        return listaModelos;
 	        
@@ -343,6 +472,14 @@ public class LeerExcel {
         boolean encontrado = false;
         DefaultListModel vinculacionAux = new DefaultListModel();
 
+        for(int i=0;i<listaServicios.length;i++){
+        	if(listaServicios[i].contains(servicio)){
+        		numServicio = i;
+        		break;
+        	}
+        }
+        
+        /*
         //  Encontramos el número del servicio
         while(!encontrado && numServicio<=numServicios){
             if(tablaDocumentos[0][numServicio].toString().contains(servicio))
@@ -350,35 +487,44 @@ public class LeerExcel {
             else
                 numServicio++;
         }
+        */
         
+        for(int i=0;i<numDocumentos;i++){
+        	if(!tablaDocumentos[i][numServicio].toString().equals("")){
+        		numVinculaciones++;
+        	}
+        }
+        
+        /*
         //  Encontramos el número de vinculaciones
         for(int i=1;i<=numDocumentos;i++){
             if (tablaDocumentos[i][numServicio].toString().equals("x"))
                 numVinculaciones++;
         }
+        */
         
         vinculacionServicio = new DefaultListModel();
         
         //  Devolvemos las vinculaciones en un array de cadena
-        String[] vinculaciones = new String[numVinculaciones];
+        String[] vinculaciones = new String[numVinculaciones+1];
 
         Inicio.documentosServicio = new ArrayList<Object>();
 
-        for(int i = 1; i<=numDocumentos;i++){
-            if(tablaDocumentos[i][numServicio].toString().equals("x")){
-                vinculacionServicio.addElement(tablaDocumentos[i][0].toString());
-                Inicio.documentosServicio.add(tablaDocumentos[i][0].toString());
+        for(int i =0; i<numDocumentos;i++){
+            if(!tablaDocumentos[i][numServicio].toString().equals("")){
+                vinculacionServicio.addElement(listaDocumentos[i]);
+                Inicio.documentosServicio.add(listaDocumentos[i]);
             }
         }
         
         
         //	Quitamos de la lista de documentos del servicio, los que ya estén en habituales
         
-        int tamaño = habituales.length + habituales2.length;
-        int tamaño1 = habituales.length;
+        int tamaño = habituales1.length + habituales2.length;
+        int tamaño1 = habituales1.length;
         String[] todosLosHabituales = new String[tamaño];
 		for(int i=0;i<tamaño1;i++){
-			todosLosHabituales[i] = habituales[i];
+			todosLosHabituales[i] = habituales1[i];
 		}
 		for(int i=tamaño1;i<tamaño;i++){
 			todosLosHabituales[i] = habituales2[i-tamaño1];
@@ -423,6 +569,7 @@ public class LeerExcel {
    	 for(int i=0;i<numUsers;i++){
    	//	 System.out.println(tablaCoordenadas[i][0]);
    		 if(tablaCoordenadas[i][0].toString().contains(nombreUser)){
+   			 System.out.println("Encontrado nombre de usuario..." + nombreUser);
    			 if(!(tablaCoordenadas[i][1].toString().contains("N"))){
    			//	 System.out.println("hole");
    				 coordenadasGrabadas = true;

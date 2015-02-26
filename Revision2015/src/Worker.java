@@ -228,80 +228,15 @@ class Worker extends SwingWorker<Double, Integer>{
 		Inicio.tamañoCarpetaPdf = tamaño;
 		
 		//	Determina el directorio firmados
+		
+		System.out.println("Determinando el directorio firmados");
 		        					
 		Inicio.ventanaExplorador.listaPdfs.setModel(Inicio.modelo);
 //  					listaPdfs.setFont(new Font("Arial",Font.BOLD,10));
     	Inicio.ventanaExplorador.setTitle(pdfs.getRutaCarpeta());
 		Inicio.ficherosCargados= true;
 	
-    if(Inicio.ficherosCargados){
-    	// vp.dispose();
-    	if(Inicio.ventanaRevisionAbierta == false){
-        /*
-        	 java.awt.EventQueue.invokeLater(new Runnable() {
-        		        		        		public void run() {
-        	        jMenu3.setEnabled(true);
-        	        jMenu2.setEnabled(true);
-        	        jMenuItem51.setEnabled(true);
 
-        		//	Inicio.ventanaD = new InterFazTabla();
-        		//	Inicio.ventanaD.setVisible(true);  
-        	        
-        	        Inicio.ventanaPrincipal = new VentanaPrincipal();
-        	        Inicio.ventanaCompacta = new VentanaCompacta();
-        			
-        		}
-        	});
-		*/
-
-    		Inicio.ventanaPrincipal = new VentanaPrincipal();
-	        Inicio.ventanaCompacta = new VentanaCompacta();
-        	Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 650);
-	        Inicio.ventanaCompacta.setBounds(Inicio.coordenadas.coordenadas[2].x, Inicio.coordenadas.coordenadas[2].y, 750, 180);
-
-    		if(visualizacion == 2 || visualizacion == 1){
-	        	Inicio.ventanaPrincipal.setVisible(false);
-    	        Inicio.ventanaCompacta.setVisible(false);
-    	        
-    	        Inicio.ventanaCompacta.jPanel1.removeKeyListener(Inicio.ventanaCompacta.listener);
-    			
-    	        //Inicio.ventanaA3 = new VentanaA3(true);
-    	        Inicio.ventanaIntegral = new VentanaIntegral();
-    	        Inicio.ventanaIntegral.setBounds(Inicio.coordenadas.coordenadas[4].x, Inicio.coordenadas.coordenadas[4].y, 360,1150);
-    	        
-    	        Inicio.ventanaMicro = new VentanaMicro();
-    	        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 680, 90);
-    	        
-    	        // Inicio.ventanaNombres = new VentanaNombres();
-    	        // Inicio.ventanaNombresYServicios = new VentanaNombresYServicios();
-    			if(Inicio.nombrePc.equals("mahc13p")){
-    				Inicio.acrobatAntiguo = true;
-    				Inicio.rutaFocoAcrobat = "cal\\FocoAcrobatV2.exe";
-    			}
-    			else{
-    				Inicio.rutaFocoAcrobat = "cal\\FocoAcrobatV.exe";
-    			}
-    			Inicio.ventanaExplorador.setState(Frame.ICONIFIED);
-    		}
-	        
-	        File archivo2 = new File(Inicio.rutaFocoAcrobat);
-	        File archivo3 = new File(Inicio.rutaFocoNHC);
-	        try {
-				 Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo2);
-				 Process pNHC = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo3);
-	        	    		        	        	
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	        
-        	Inicio.ventanaRevisionAbierta = true;
-
-    	}
-    	
-    	if(Inicio.documentacionDeUrgencias){
-    		Inicio.ventanaExplorador.renombraURG();
-    	}
     	
     	/*
     	else{
@@ -313,13 +248,89 @@ class Worker extends SwingWorker<Double, Integer>{
     	*/
     	// vp.dispose();
 
-    }
+
 		return 100.0;
 	}
 	
 	protected void done(){
 		System.out.println("hecho");
 		Inicio.progreso = true;
+	    if(Inicio.ficherosCargados){
+	    	// vp.dispose();
+	    	if(Inicio.ventanaRevisionAbierta == false){
+	        /*
+	        	 java.awt.EventQueue.invokeLater(new Runnable() {
+	        		        		        		public void run() {
+	        	        jMenu3.setEnabled(true);
+	        	        jMenu2.setEnabled(true);
+	        	        jMenuItem51.setEnabled(true);
+
+	        		//	Inicio.ventanaD = new InterFazTabla();
+	        		//	Inicio.ventanaD.setVisible(true);  
+	        	        
+	        	        Inicio.ventanaPrincipal = new VentanaPrincipal();
+	        	        Inicio.ventanaCompacta = new VentanaCompacta();
+	        			
+	        		}
+	        	});
+			*/
+	    		System.out.println("Las ventanas no estan abiertas");
+	    		
+	    		System.out.println("Visualización vale..." + visualizacion);
+
+	 
+	    		Inicio.ventanaPrincipal = new VentanaPrincipal();
+		        Inicio.ventanaCompacta = new VentanaCompacta();
+		        Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 650);
+		        Inicio.ventanaCompacta.setBounds(Inicio.coordenadas.coordenadas[2].x, Inicio.coordenadas.coordenadas[2].y, 750, 180);
+
+		        System.out.println("Visualización vale..." + visualizacion);
+		        
+	    		if(visualizacion == 2 || visualizacion == 1){
+		        	Inicio.ventanaPrincipal.setVisible(false);
+	    	        Inicio.ventanaCompacta.setVisible(false);
+	    	        
+	    	        Inicio.ventanaCompacta.jPanel1.removeKeyListener(Inicio.ventanaCompacta.listener);
+	    			
+	    	        //Inicio.ventanaA3 = new VentanaA3(true);
+	    	        Inicio.ventanaIntegral = new VentanaIntegral();
+	    	        Inicio.ventanaIntegral.setBounds(Inicio.coordenadas.coordenadas[4].x, Inicio.coordenadas.coordenadas[4].y, 360,1150);
+	    	        
+	    	        Inicio.ventanaMicro = new VentanaMicro();
+	    	        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 680, 90);
+	    	        
+	    	        // Inicio.ventanaNombres = new VentanaNombres();
+	    	        // Inicio.ventanaNombresYServicios = new VentanaNombresYServicios();
+	    			if(Inicio.nombrePc.equals("mahc13p")){
+	    				Inicio.acrobatAntiguo = true;
+	    				Inicio.rutaFocoAcrobat = "cal\\FocoAcrobatV2.exe";
+	    			}
+	    			else{
+	    				Inicio.rutaFocoAcrobat = "cal\\FocoAcrobatV.exe";
+	    			}
+	    			Inicio.ventanaExplorador.setState(Frame.ICONIFIED);
+	    		}
+		        
+		        File archivo2 = new File(Inicio.rutaFocoAcrobat);
+		        System.out.println("El archivo existe?" + archivo2.exists());
+		        File archivo3 = new File(Inicio.rutaFocoNHC);
+		        try {
+					 Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo2);
+					 Process pNHC = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo3);
+		        	    		        	        	
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        
+	        	Inicio.ventanaRevisionAbierta = true;
+
+	    	}
+	    	
+	    	if(Inicio.documentacionDeUrgencias){
+	    		Inicio.ventanaExplorador.renombraURG();
+	    	}
+	    }
 		vProgreso.dispose();
 	}
 	

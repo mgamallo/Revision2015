@@ -554,7 +554,7 @@ public class VentanaExplorador extends javax.swing.JFrame {
         jMenuItem3.addActionListener(new ActionListener(){			//	Guardar preferencias
         	public void actionPerformed(ActionEvent evento){
         		if(Inicio.ventanaRevisionAbierta){
-            		Inicio.coordenadas.grabarCoordenadas();
+            	//	Inicio.coordenadas.grabarCoordenadas();
         		}
 
         		

@@ -18,12 +18,17 @@ public class AbrirCarpeta {
 		
 	AbrirCarpeta(boolean renombrar){
 
+		System.out.println("Constructor abrir carpeta.");
+		
 		if(Inicio.documentacionDeUrgencias){
 			ruta = Inicio.RUTAURG;
 			rutab = Inicio.RUTAURGB;
 		}
 		
 		eligeDirectorio = listaPdfs();
+		
+		System.out.println(eligeDirectorio);
+		
 		if (eligeDirectorio){
 			rutaCarpeta = explorador.getSelectedFile().toString();
 			System.out.println("Empecemos por aqui " + rutaCarpeta);
@@ -36,13 +41,13 @@ public class AbrirCarpeta {
 		explorador.setDialogTitle("Abrir carpeta...");
 		if(!(new File(ruta).exists())){
 			ruta = rutab;
-			Inicio.unidadHDD = ruta.substring(0, 1);
-			if(Inicio.documentacionDeUrgencias){
+		}
+		Inicio.unidadHDD = ruta.substring(0, 1);
+		if(Inicio.documentacionDeUrgencias){
 				String cadenaUsuario = "\\01 " + Inicio.usuario + "\\01 Escaneado";
 				ruta += cadenaUsuario;
-				
+				System.out.println(cadenaUsuario);
 				explorador.setDialogTitle("Abrir carpeta escaneado de... " + Inicio.usuario);
-			}
 		}
 
 		explorador.setCurrentDirectory(new File(ruta));

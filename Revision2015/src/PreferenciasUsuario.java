@@ -80,7 +80,7 @@ public class PreferenciasUsuario {
 	void grabarCoordenadas(){
 		getCoordenadasEnPantalla();
 		EscribirExcel guardarPreferencias = new EscribirExcel();
-		guardarPreferencias.escribir("Documentos.xls", Inicio.usuario, Inicio.numeroPantallas);
+		guardarPreferencias.escribir("CoordenadasR.xls", Inicio.usuario, Inicio.numeroPantallas);
 	}
 }
 

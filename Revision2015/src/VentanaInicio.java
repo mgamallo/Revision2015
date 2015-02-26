@@ -148,6 +148,7 @@ public class VentanaInicio extends javax.swing.JDialog {
         jBoton1Ianus.setText("Aceptar");
         jBoton1Ianus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	System.out.println("El usuario es... " + Inicio.usuario );
             	dispose();
             }
         });

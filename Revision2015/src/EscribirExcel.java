@@ -7,6 +7,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.biff.CountryCode;
+import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
@@ -27,25 +28,45 @@ public class EscribirExcel {
             wbSettings.setCharacterSet(CountryCode.SPAIN.getValue());
 	
             Workbook archivoExcel = Workbook.getWorkbook(new File(archivoDestino));
-            Sheet hoja = archivoExcel.getSheet(13);
-            int numC = hoja.getColumns();
-            int numF = hoja.getRows(); 
-            String[] listaUsers = new String[numF-2];
+            Sheet hoja = archivoExcel.getSheet(0);
+            
+	        int numColumnas = 0;
+	        int numFilas = 0;
+	        
+            while(!hoja.getCell(numColumnas,0).getContents().toString().equals("#finH")){
+            	numColumnas++;
+            }
+
+	        while(!hoja.getCell(0,numFilas).getContents().toString().equals("#finV")){
+	        	numFilas++;
+	        }
+            
+	        System.out.println("Escribiendo hoja excel");
+            
+            
+
+            String[] listaUsers = new String[numFilas-2];
             int numUsers = listaUsers.length;
             for(int i=0;i<numUsers;i++){
-            	listaUsers[i] = hoja.getCell(0,i+2).getContents().toString();
+            	listaUsers[i] = hoja.getCell(0,i+1).getContents().toString();
+            	System.out.println(listaUsers[i]);
             }
+            
+
+            
             boolean encontrado = false;
             for(int i=0;i<numUsers;i++){								//	Fila Usuario
             	if(listaUsers[i].contains(user)){
-            		numFilaUser = i+2;
+            		numFilaUser = i+1;
             		encontrado = true;
             		break;
             	}
             }
             if(!encontrado){											//	Nuevo Usuario
-            	numFilaUser = numUsers+2;
+            	numFilaUser = numUsers+1;
             }
+            
+            System.out.println("Se va a modificar la linea " + numFilaUser);
             
             if(pantallas == 1){
             	indicePantallas = 1;
@@ -59,8 +80,13 @@ public class EscribirExcel {
             WritableWorkbook libroEscritura = Workbook.createWorkbook(new File(archivoDestino), archivoExcel);
             
             archivoExcel.close();
+            archivoExcel.close();
             
-            WritableSheet hojaE = libroEscritura.getSheet(13);
+            
+            System.out.println("Empezamos a escribir en " + archivoDestino);
+            System.out.println(new File(archivoDestino).getAbsolutePath());
+            
+            WritableSheet hojaE = libroEscritura.getSheet(0);
             
             jxl.write.Label texto;
             jxl.write.Number numero;
@@ -71,6 +97,8 @@ public class EscribirExcel {
             if(!encontrado){
                 texto = new jxl.write.Label(0,numFilaUser,user);
                 hojaE.addCell(texto);
+                texto = new jxl.write.Label(0,numFilaUser+1,"#finV");
+                hojaE.addCell(texto);
                 /*
                  * 
                  * 	Posteriormente hay que poner las N que hagan falta
@@ -80,7 +108,15 @@ public class EscribirExcel {
             }
             ////////////////////////////////////////////
             
+            texto = new Label(0, 30, "Vamos");
+            hojaE.addCell(texto);
             
+            System.out.println("casi casi");
+            
+            libroEscritura.write();
+            libroEscritura.close();
+            
+            /*
             texto = new jxl.write.Label(indicePantallas,numFilaUser,"S");		//	col, fil , val
             hojaE.addCell(texto);
             
@@ -122,7 +158,7 @@ public class EscribirExcel {
             
             libroEscritura.write();
             libroEscritura.close();
-            
+            */
 	
 		}catch(Exception ioe){
 			// ioe.printStackTrace();
