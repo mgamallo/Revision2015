@@ -178,6 +178,12 @@ class Worker extends SwingWorker<Double, Integer>{
 					}
 					
 				}
+				else if(servicioPosible.equals(Inicio.CARC) || servicioPosible.equals(Inicio.PEDC)){
+					if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.ECO)){
+						Inicio.listaDocumentos[j].nombreNormalizado = Inicio.ECOCARDIOGRAFIA;
+					}
+					Inicio.listaDocumentos[j].servicio = servicioPosible;
+				}
 				else if(!servicioPosible.equals("")){
 					
 					System.out.println("Toas las demas");

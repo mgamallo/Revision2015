@@ -1174,47 +1174,7 @@ public class VentanaExplorador extends javax.swing.JFrame {
 			
 			VentanaProgreso vprogreso = new VentanaProgreso(pdfs, visualizacion);
 			
-			/*
-			for(int i=0;i<aux;i++){
-				for(int j=0;j<tamModelos;j++){
-					if(Inicio.listaDocumentos[i].detector(Inicio.modelos.get(j))){
-						break;
-					}
-				}
-			}
-			
-			*/
-			/*
-			System.out.println("Segunda tanda de reconocimiento...");
-			
-			for(int i=0;i<aux;i++){
-				for(int j=0;j<tamModelos;j++){
-					if(Inicio.listaDocumentos[i].reDetectorNHC(Inicio.modelos.get(j))){
-						break;
-					}
-				}
-			}
-			
-			// Tercera tanda de reconocimiento solo para urgencias
-			for(int i=0;i<aux;i++){
-					Inicio.listaDocumentos[i].reDetectorNHCUrgencias();
-			}
-			
-			// Reconocimientos varios
-			for(int i=0;i<aux;i++){
-				 Inicio.listaDocumentos[i].nhc = NHC.nhcTriaje143(Inicio.listaDocumentos[i]);
-			}
-			
-			//	Reconocimiento de ekg´s y ecos
-			
-			for(int i=0;i<aux;i++){
-				Inicio.listaDocumentos[i].detectaEcos();
-				Inicio.listaDocumentos[i].detectaEKGs();
-				Inicio.listaDocumentos[i].detectaMonitor();
-				Inicio.listaDocumentos[i].detectaDocRosa();
-			}
-			
-			*/
+
 			
 		}
     }

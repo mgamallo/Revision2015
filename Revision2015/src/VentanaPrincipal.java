@@ -8,7 +8,10 @@ import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 import es.mgamallo.firma.VentanaDialogoSinFileChooser;
 
@@ -19,6 +22,10 @@ import es.mgamallo.firma.VentanaDialogoSinFileChooser;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
 
+	private JScrollPane jScrollPaneComunes;
+	private JList jListComunes;
+	private JLabel jLDocumentosComunes;
+	private JLabel jLDocumentosServicio;
 	/**
      * Creates new form VentanaPrincipal
      */
@@ -69,10 +76,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jBFirmar = new javax.swing.JButton();
         jBGrabar = new javax.swing.JButton();
+        
+        
+        jScrollPaneComunes = new JScrollPane();
+        jListComunes = new JList();
+        jLDocumentosComunes = new JLabel();
+        jLDocumentosServicio = new JLabel();
+        
 
         setTitle("Panel Principal");
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(720, 680));
+ //       setPreferredSize(new java.awt.Dimension(720, 680));
+        setPreferredSize(new java.awt.Dimension(720, 1000));
         setMinimumSize(new Dimension(720,680));
         setResizable(true);
 
@@ -325,7 +340,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(Inicio.jCheckBox1))
         );
 
-        jPanel1.setBackground(new java.awt.Color(212, 237, 248));
+jPanel1.setBackground(new java.awt.Color(212, 237, 248));
+    //    jPanel1.setBackground(new java.awt.Color(0, 237, 248));
         
         DefaultListModel dLM = new DefaultListModel();
 		dLM.removeAllElements();

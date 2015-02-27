@@ -490,7 +490,13 @@ public class Documento {
 		if(this.nombreNormalizado.equals("X") && !this.servicio.equals("Separador")){
 			if((this.fisica.dimensiones.alto <= 330 && this.fisica.dimensiones.alto >= 290) || 
 					this.fisica.dimensiones.ancho <= 330 && this.fisica.dimensiones.ancho >= 290){
-				this.nombreNormalizado = Inicio.ECO;
+				if( this.servicio.equals(Inicio.CARC) || this.servicio.equals(Inicio.PEDC)){
+					this.nombreNormalizado = Inicio.ECOCARDIOGRAFIA;
+				}
+				else{
+					this.nombreNormalizado = Inicio.ECO;
+				}
+				
 				}
 		}
 	}

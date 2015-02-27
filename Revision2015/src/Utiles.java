@@ -35,8 +35,7 @@ public class Utiles {
 		for(int i=0;i < Inicio.separadores.size()-1;i++){
 			if(Inicio.numeroPdf >= Inicio.separadores.get(i) && Inicio.numeroPdf < Inicio.separadores.get(i+1)){
 				
-				// AdivinaServicio.getServicio(Inicio.numeroPdf + 1, Inicio.separadores.get(i+1));
-				
+					
 				for(int j= Inicio.numeroPdf + 1; j < Inicio.separadores.get(i+1); j++){
 					if( Inicio.listaDocumentos[j].servicio != "X" && Inicio.listaDocumentos[j].servicio != Inicio.jBServicio.getText()){
 						Inicio.listaDocumentos[j].semaforoAmarilloServicio = true;
@@ -59,44 +58,19 @@ public class Utiles {
 							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 						}
 
-						/*	
-						else if(Inicio.jBServicio.getText().equals("CIA")){
-							if(!Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.HOSPITALIZACION) 
-									&& 	!Inicio.listaDocumentos[j].nombreNormalizado.equals("Orden de ingreso")
-									&& !Inicio.listaDocumentos[j].nombreNormalizado.equals("Órdenes médicas")){
-								if(Inicio.listaDocumentos[j].fisica.numPaginas > 2){
-									Inicio.listaDocumentos[j].nombreNormalizado = "Quirófano";
-								}
-								Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
-							}
-
-						}
-						
-						*/
-						/*
-						else if(Inicio.jBServicio.getText().equals("HOSP")){
-							
-							if(!Inicio.listaDocumentos[j].nombreNormalizado.equals("Quirófano")
-									&& !Inicio.listaDocumentos[j].nombreNormalizado.equals("CMA")
-									&& !Inicio.listaDocumentos[j].nombreNormalizado.equals("Folla enfermaría circulante")){
-								if(!Excepciones.excepcionesIngresos(j)){
-									if(Inicio.listaDocumentos[j].fisica.numPaginas > 2 ){
-										Inicio.listaDocumentos[j].nombreNormalizado = "Hospitalización";
-									}
-									Inicio.listaDocumentos[j].servicio = "HOSP";
-								}
-							}
-						}
-						
-						*/
 						
 						else if(Inicio.jBServicio.getText().equals(Inicio.DERC) || Inicio.jBServicio.getText().equals(Inicio.ETMC) ){
-							if(Inicio.listaDocumentos[j].nombreNormalizado.equals("Enfermería quirúrgica")){
+							if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.ENFERMERIA_QUIRURGICA)){
 								Inicio.listaDocumentos[j].servicio = Inicio.CIA;
 							}
 							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 						}
-						
+						else if(Inicio.jBServicio.getText().equals(Inicio.CARC) || Inicio.jBServicio.getText().equals(Inicio.PEDC)){
+							if(Inicio.listaDocumentos[j].nombreNormalizado.equals(Inicio.ECO)){
+								Inicio.listaDocumentos[j].nombreNormalizado = Inicio.ECOCARDIOGRAFIA;
+							}
+							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
+						}
 						else{
 							Inicio.listaDocumentos[j].servicio = Inicio.jBServicio.getText();
 						}
@@ -170,36 +144,6 @@ public class Utiles {
 			
 			Inicio.utiles.renombraServicios();
 		}
-		/*
-		else{
-			if(Inicio.jBServicio.getText().equals("CIA")){
-				if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas > 2){
-					Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado = "Quirófano";
-					Inicio.jBNombreDoc.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
-					Inicio.jBNombreDocp.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
-					
-				//
-				//	if(Inicio.menuVertical){
-				//		Inicio.ventanaMicro.jBNombreDocm.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
-				//	}
-
-				}
-			}
-			if(Inicio.jBServicio.getText().equals("HOSP")){
-				if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas > 2){
-					Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado = "Hospitalización";
-					Inicio.jBNombreDoc.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
-					Inicio.jBNombreDocp.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
-					
-					
-				//	if(Inicio.menuVertical){
-				//		Inicio.ventanaMicro.jBNombreDocm.setText(Inicio.listaDocumentos[Inicio.numeroPdf].nombreNormalizado);
-				//	}
-					
-				}
-			}
-		}
-	*/
 		
 		
 		new FocalAdobe(100);
@@ -248,18 +192,9 @@ public class Utiles {
 	    	
 	    	
 	    	for(int i=0;i<Inicio.listaDocumentos.length;i++){
-	    		//if(Inicio.listaDocumentos[i].revisado){
-	    			
-	    		/*
-	    			if( Inicio.listaDocumentos[i].fisica.peso > 12){
-	    				
-	    			}
-	    		*/
 	    		
 	    			File nombreAntiguo = new File(Inicio.listaDocumentos[i].rutaArchivo);
 	    			
-	    			//System.out.println("Ruta apartar:");
-	    			//System.out.println(Inicio.listaDocumentos[i].apartaFichero());
 	    			
 	    			if(Inicio.listaDocumentos[i].nhc.equals("Eliminar")){
 	    				if(nombreAntiguo.delete()){

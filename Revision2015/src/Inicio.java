@@ -53,8 +53,10 @@ public class Inicio extends JFrame {
 	public static final String VIDEONISTAGMOGRAFÍA = "Videonistagmografia";
 	public static final String URPA = "Postanestesia";
 	public static final String MAPA_DERMATOMAS = "Anamnese (Mapa dermatomas)";
+	public static final String ENFERMERIA_QUIRURGICA = "Folla enfermaría circulante";
 	
     public static final String CARC = "CARC";
+    public static final String PEDC = "PEDC";
 	public static final String ANRC = "ANRC";
 	public static final String DES = "Des";
 	public static final String HOSP = "HOSP";

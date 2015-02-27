@@ -23,6 +23,7 @@ public class VentanaComprobar extends JDialog {
 	JTextArea areaTexto = new JTextArea(400, 300);
 
 	ArrayList<Integer> listaPdfsGrandes = new ArrayList<Integer>();
+	ArrayList<Integer> listaPdfsGrandesXedoc = new ArrayList<Integer>();
 	
 	ArrayList<Integer> listaSinNHC = new ArrayList<Integer>();
 	ArrayList<Integer> listaSinServicio = new ArrayList<Integer>();
@@ -88,6 +89,15 @@ public class VentanaComprobar extends JDialog {
 		if(Inicio.listaDocumentos[indice].fisica.peso > 11900){
 			return false;
 		}
+		return true;
+	}
+	
+	boolean compruebaTamañoPdfXedoc(int indice){
+		
+		if(Inicio.listaDocumentos[indice].fisica.peso > 4000){
+			return false;
+		}
+		
 		return true;
 	}
 	
@@ -177,6 +187,12 @@ public class VentanaComprobar extends JDialog {
 		{
 			cadena += "\n\n";
 		}
+		for(int i=0;i<listaPdfsGrandesXedoc.size();i++){
+			if(i==0){
+				cadena += "Los siguientes pdfs tienen un tamaño demasiado grande para Xedoc: \n\n   ";
+			}
+			cadena += ((listaPdfsGrandesXedoc.get(i) + 1) + ", ");
+		}
 		
 		return cadena;
 	}
@@ -206,7 +222,10 @@ public class VentanaComprobar extends JDialog {
 				listaSinNombre.add(i);
 				errores = true;
 			}
-			
+			if(!compruebaTamañoPdfXedoc(i)){
+				listaPdfsGrandesXedoc.add(i);
+				errores = true;
+			}
 		}
 		
 		return errores;
