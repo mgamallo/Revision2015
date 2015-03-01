@@ -8,10 +8,12 @@ import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 import es.mgamallo.firma.VentanaDialogoSinFileChooser;
 
@@ -26,6 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 	private JList jListComunes;
 	private JLabel jLDocumentosComunes;
 	private JLabel jLDocumentosServicio;
+	private JButton jBExtraer;
 	/**
      * Creates new form VentanaPrincipal
      */
@@ -47,6 +50,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Inicio.jBNHC = new javax.swing.JButton();
         Inicio.jBServicio = new javax.swing.JButton();
         Inicio.jBNombreDoc = new javax.swing.JButton();
+        
+		Inicio.jBDeshabilitar = new javax.swing.JButton();
+        
         jLNHC = new javax.swing.JLabel();
         jLServicio = new javax.swing.JLabel();
         jLNombreDoc = new javax.swing.JLabel();
@@ -83,6 +89,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLDocumentosComunes = new JLabel();
         jLDocumentosServicio = new JLabel();
         
+        jBExtraer = new javax.swing.JButton();
 
         setTitle("Panel Principal");
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -165,10 +172,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLNombreDoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLNombreDoc.setText("Fijar el nombre del Documento");
 
+        /*
 		if(Inicio.separadores.get(0) == -1){
 			Inicio.jBServicio.setBackground(Color.pink);
 			//ventanaRenombrarServicios();
 		}
+		*/
 
         javax.swing.GroupLayout jPanelNorteBotonesLayout = new javax.swing.GroupLayout(jPanelNorteBotones);
         jPanelNorteBotones.setLayout(jPanelNorteBotonesLayout);
@@ -340,9 +349,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(Inicio.jCheckBox1))
         );
 
-jPanel1.setBackground(new java.awt.Color(212, 237, 248));
-    //    jPanel1.setBackground(new java.awt.Color(0, 237, 248));
-        
+        jPanel1.setBackground(new java.awt.Color(212, 237, 248));
+ 
         DefaultListModel dLM = new DefaultListModel();
 		dLM.removeAllElements();
 		dLM = Inicio.excel.listaServiciosLista;
@@ -379,7 +387,7 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
 		});
 
         Inicio.jLNombresDoc.setBackground(new java.awt.Color(255, 255, 204));
-        Inicio.jLNombresDoc.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        Inicio.jLNombresDoc.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 		if(Inicio.documentacionDeUrgencias){
 	        Inicio.jLNombresDoc.setModel(Inicio.excel.getDocServicio("URG"));
 		}
@@ -396,6 +404,7 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
             }
         });
    
+        
         
         jListHabituales1.setBackground(new java.awt.Color(255, 241, 182));
         jListHabituales1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -426,6 +435,19 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
             }
         });
 
+        
+        jListComunes.setModel(Inicio.excel.listaComunes);
+        jListComunes.setBackground(new java.awt.Color(255, 241, 182));
+        jListComunes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jListComunes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPaneComunes.setViewportView(jListComunes);
+        
+        jListComunes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            	listaNombresComunesMouseClicked(evt);
+            }
+        });
+        
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -433,11 +455,13 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollNombresDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                		.addComponent(jScrollNombresDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                		.addComponent(jScrollPane3,javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPaneComunes, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -447,14 +471,34 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPaneComunes, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollNombresDoc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-                    .addComponent(jScrollServicio, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, Short.MAX_VALUE))
+                    .addGap(18,18,18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollNombresDoc,javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                    	.addGap(18,18,18)
+                     	.addComponent(jScrollPane3,javax.swing.GroupLayout.PREFERRED_SIZE,250,javax.swing.GroupLayout.PREFERRED_SIZE))
+                   	
+                   // .addComponent(jScrollServicio, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollServicio, javax.swing.GroupLayout.Alignment.TRAILING,javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
+        
+        
+		Inicio.jBDeshabilitar.setText("Teclas On");
+		Inicio.jBDeshabilitar.setBackground(Color.pink);
+		Inicio.jBDeshabilitar.setToolTipText("Habilita/Deshabilita las teclas");
+		Inicio.jBDeshabilitar.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				// jBEliminarActionPerformed(evt);
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				jPanel1.requestFocus();
+			}
+		});
+        
+        
         jBEliminar.setIcon(new ImageIcon("Iconos/Cubo Basura32x32.png"));
         jBEliminar.setText("Eliminar");
         jBEliminar.setToolTipText("Elimina el documento");
@@ -500,6 +544,29 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
             }
         });
 
+        
+		jBExtraer.setEnabled(true);
+		jBExtraer.setIcon(new javax.swing.ImageIcon("iconos/accept-32.png")); // NOI18N
+		jBExtraer.setText("Extraer");
+		jBExtraer
+				.setToolTipText("Obtiene la ruta y nombre del nuevo archivo, y lo coloca en el portapapeles");
+		jBExtraer.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				// jBExtraerActionPerformed(evt);
+				
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				
+				if(Inicio.ventanaExtraer != null){
+					Inicio.ventanaExtraer.dispose();
+				}
+				
+				Inicio.ventanaExtraer = new VentanaExtraer();
+				jPanel1.requestFocus();
+			}
+		});
+        
+        
+        
         jButton9.setText("Vacio");
         jButton9.setVisible(false);
 
@@ -543,12 +610,17 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+            		
                 .addContainerGap()
+                .addComponent(Inicio.jBDeshabilitar)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(jBEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBApartar)
                 .addGap(80, 80, 80)
                 .addComponent(jBCarpeta)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jBExtraer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -562,9 +634,12 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     //.addComponent(jBEliminar)
                     //.addComponent(jBApartar)
+                	.addComponent(Inicio.jBDeshabilitar,javax.swing.GroupLayout.PREFERRED_SIZE,29,javax.swing.GroupLayout.PREFERRED_SIZE)	
                 	.addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBApartar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBExtraer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   
                     .addComponent(jButton9)
                     .addComponent(jButton10)
                     .addComponent(jBFirmar)
@@ -626,6 +701,7 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
 		Inicio.jBNombreDocp.setIcon(null);
 		jListHabituales1.clearSelection();
 		Inicio.jLNombresDoc.clearSelection();
+		jListComunes.clearSelection();
 		
 		new FocalAdobe(100);
 	}
@@ -645,6 +721,7 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
 		Inicio.jBNombreDocp.setIcon(null);
 		Inicio.jLNombresDoc.clearSelection();
 		jListHabituales2.clearSelection();
+		jListComunes.clearSelection();
 		
 		new FocalAdobe(100);
 	}
@@ -660,10 +737,24 @@ jPanel1.setBackground(new java.awt.Color(212, 237, 248));
 		Inicio.jBNombreDocp.setIcon(null);
 		jListHabituales1.clearSelection();
 		jListHabituales2.clearSelection();
+		jListComunes.clearSelection();
 		
 		new FocalAdobe(100);
 	}
 
+	protected void listaNombresComunesMouseClicked(MouseEvent evt){
+		Inicio.jBNombreDoc.setText(jListComunes.getSelectedValue().toString());
+		Inicio.jBNombreDocp.setText(jListComunes.getSelectedValue().toString());
+		Inicio.jBNombreDoc.setBackground(new java.awt.Color(153, 255, 153));
+		Inicio.jBNombreDocp.setBackground(new java.awt.Color(153, 255, 153));
+		Inicio.jBNombreDoc.setIcon(null);
+		Inicio.jBNombreDocp.setIcon(null);
+		jListHabituales1.clearSelection();
+		jListHabituales2.clearSelection();
+		Inicio.jLNombresDoc.clearSelection();
+		
+		new FocalAdobe(100);
+	}
     
 	protected void listaServiciosMouseClicked(MouseEvent evt) {
 		// TODO Auto-generated method stub

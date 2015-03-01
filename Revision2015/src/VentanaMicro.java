@@ -1,11 +1,22 @@
+import java.awt.Color;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 
-public class VentanaMicro extends javax.swing.JFrame {
+public class VentanaMicro extends javax.swing.JFrame implements MouseListener {
 
-    /**
+    private JPanel panelMover;
+	private Point coordenadasRaton = new Point();
+
+	/**
      * Creates new form VentanaMicro
      */
     public VentanaMicro() {
@@ -29,7 +40,7 @@ public class VentanaMicro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-     	
+     	panelMover = new JPanel();
         jPanel1 = new javax.swing.JPanel();
         Inicio.jBNHCp = new javax.swing.JButton();
         Inicio.jBServiciop = new javax.swing.JButton();
@@ -63,6 +74,7 @@ public class VentanaMicro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+            	.addComponent(panelMover,25,25,25)	
                 .addComponent(Inicio.jBNHCp)
                 //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Inicio.jBServiciop)
@@ -71,6 +83,7 @@ public class VentanaMicro extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+            .addComponent(panelMover)
             .addComponent(Inicio.jBNHCp)
             .addComponent(Inicio.jBServiciop)
             .addComponent(Inicio.jBNombreDocp)
@@ -91,6 +104,30 @@ public class VentanaMicro extends javax.swing.JFrame {
         
         getContentPane().add(jPanel1);
 
+        this.setUndecorated(true);
+        
+		panelMover.addMouseListener(this);
+
+		panelMover.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+				Point punto = MouseInfo.getPointerInfo().getLocation();
+				setLocation(punto.x - coordenadasRaton.x, punto.y - coordenadasRaton.y);
+			}
+		});
+
+        setBackground(Color.black);
+        panelMover.setBackground(Color.black);
+        jPanel1.setBackground(Color.black);
+		
         pack();
 
     }// </editor-fold>                        
@@ -134,6 +171,39 @@ public class VentanaMicro extends javax.swing.JFrame {
 
     private javax.swing.JPanel jPanel1;
     // End of variables declaration       
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getComponent() == panelMover){
+			coordenadasRaton = e.getPoint();
+			System.out.println("Pinche en el panel");
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
     
     

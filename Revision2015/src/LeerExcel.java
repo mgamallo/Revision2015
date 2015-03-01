@@ -20,14 +20,14 @@ public class LeerExcel {
 	String[] listaDocumentos;
 	String[] listaServicios;
 	
-	DefaultListModel listaServiciosLista;
-	DefaultListModel listaDocumentosDLM;
-	DefaultListModel listaComunes;
-	DefaultListModel listaHabituales1;
-    DefaultListModel listaHabituales2;
-    DefaultListModel listaHabitualesUrg;
+	DefaultListModel<String> listaServiciosLista;
+	DefaultListModel<String> listaDocumentosDLM;
+	DefaultListModel<String> listaComunes;
+	DefaultListModel<String> listaHabituales1;
+    DefaultListModel<String> listaHabituales2;
+    DefaultListModel<String> listaHabitualesUrg;
     
-    DefaultListModel vinculacionServicio;
+    DefaultListModel<String> vinculacionServicio;
     
     int numServicios = 0;
     int numDocumentos = 0;
@@ -40,10 +40,10 @@ public class LeerExcel {
     
     Object[][] tablaCoordenadas;
     Object[][] tablaVisor;
-    DefaultListModel listaUsuariosLista;
-    DefaultListModel listaUsuariosListaUrg;
-    DefaultComboBoxModel listaUsuarios;
-    DefaultComboBoxModel listaUsuariosUrg;
+    DefaultListModel<String> listaUsuariosLista;
+    DefaultListModel<String> listaUsuariosListaUrg;
+    DefaultComboBoxModel<String> listaUsuarios;
+    DefaultComboBoxModel<String> listaUsuariosUrg;
     
     boolean coordenadasGrabadas = false;
     
@@ -177,14 +177,14 @@ public class LeerExcel {
 	        
 	        
      
-	        listaServiciosLista = new DefaultListModel();
+	        listaServiciosLista = new DefaultListModel<String>();
 	        for(int i=0;i<numServicios;i++){
 	    //    	System.out.println(listaServicios[i].toString());
 	        	listaServiciosLista.addElement(listaServicios[i]);
 	        }
 	        
 	    //  Leer lista de todos los documentos        
-            listaDocumentosDLM = new DefaultListModel();
+            listaDocumentosDLM = new DefaultListModel<String>();
             for(int i=0;i<listaDocumentos.length;i++){
                 listaDocumentosDLM.addElement(listaDocumentos[i]);
             }   
@@ -205,10 +205,10 @@ public class LeerExcel {
 	        int numHabitualesU = 0;
 	        int numComunes = 0;
 	        
-	        listaComunes = new DefaultListModel();
-	        listaHabituales1 = new DefaultListModel();
-            listaHabituales2 = new DefaultListModel();
-            listaHabitualesUrg = new DefaultListModel();
+	        listaComunes = new DefaultListModel<String>();
+	        listaHabituales1 = new DefaultListModel<String>();
+            listaHabituales2 = new DefaultListModel<String>();
+            listaHabitualesUrg = new DefaultListModel<String>();
 	        
 	        for(int fila = 0; fila < numDocumentos;fila++){
 	        	for(int columna = 0;columna < 4; columna++){
@@ -271,8 +271,8 @@ public class LeerExcel {
 	        	numFilasUsDoc++;
 	        }
             System.out.println("número de filas " + numFilasUsDoc);
-            listaUsuarios = new DefaultComboBoxModel();
-            listaUsuariosLista = new DefaultListModel();
+            listaUsuarios = new DefaultComboBoxModel<String>();
+            listaUsuariosLista = new DefaultListModel<String>();
             for(int i=0;i<numFilasUsDoc;i++){
             	listaUsuarios.addElement(hoja.getCell(0, i).getContents().toString());
             	listaUsuariosLista.addElement(hoja.getCell(0, i).getContents().toString());
@@ -309,8 +309,8 @@ public class LeerExcel {
 	        }
             System.out.println("Numero filas urgencias " + numFilasUsUrg);
             
-            listaUsuariosUrg = new DefaultComboBoxModel();
-            listaUsuariosListaUrg = new DefaultListModel();
+            listaUsuariosUrg = new DefaultComboBoxModel<String>();
+            listaUsuariosListaUrg = new DefaultListModel<String>();
             for(int i=0;i<numFilasUsUrg;i++){
             	listaUsuariosUrg.addElement(hoja.getCell(0, i).getContents().toString());
             	listaUsuariosListaUrg.addElement(hoja.getCell(0, i).getContents().toString());
@@ -466,11 +466,11 @@ public class LeerExcel {
 	}
 	
 	
-    DefaultListModel getDocServicio(String servicio){
+    DefaultListModel<String> getDocServicio(String servicio){
         int numVinculaciones = 0;
         int numServicio =1;
         boolean encontrado = false;
-        DefaultListModel vinculacionAux = new DefaultListModel();
+        DefaultListModel<String> vinculacionAux = new DefaultListModel<String>();
 
         for(int i=0;i<listaServicios.length;i++){
         	if(listaServicios[i].contains(servicio)){
@@ -503,7 +503,7 @@ public class LeerExcel {
         }
         */
         
-        vinculacionServicio = new DefaultListModel();
+        vinculacionServicio = new DefaultListModel<String>();
         
         //  Devolvemos las vinculaciones en un array de cadena
         String[] vinculaciones = new String[numVinculaciones+1];
@@ -519,17 +519,27 @@ public class LeerExcel {
         
         
         //	Quitamos de la lista de documentos del servicio, los que ya estén en habituales
+        //  y en comunes.
         
-        int tamaño = habituales1.length + habituales2.length;
+        int tamaño = habituales1.length + habituales2.length + comunes.length;
         int tamaño1 = habituales1.length;
+        int tamaño2 = habituales2.length;
+        
+        System.out.println(tamaño + " " + tamaño1 + " " + tamaño2);
+        
         String[] todosLosHabituales = new String[tamaño];
 		for(int i=0;i<tamaño1;i++){
 			todosLosHabituales[i] = habituales1[i];
 		}
-		for(int i=tamaño1;i<tamaño;i++){
+		for(int i=tamaño1;i<tamaño1 + tamaño2;i++){
 			todosLosHabituales[i] = habituales2[i-tamaño1];
 		}
-
+		for(int i=tamaño1 + tamaño2 ;i<tamaño;i++){
+			todosLosHabituales[i] = comunes[i-tamaño1 -tamaño2];
+		}
+		
+		
+		
         for(int i = 0; i<vinculacionServicio.size();i++){
         	encontrado = false;
         	for(int j=0;(j<tamaño && !encontrado);j++){
@@ -538,7 +548,7 @@ public class LeerExcel {
              	}
         	}
         	if(!encontrado){
-        		vinculacionAux.addElement(vinculacionServicio.getElementAt(i));
+        		vinculacionAux.addElement((String) vinculacionServicio.getElementAt(i));
         	}
         }
 

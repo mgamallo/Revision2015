@@ -1034,7 +1034,18 @@ public class VentanaExplorador extends javax.swing.JFrame {
 
         pack();
         setVisible(true);
+        
+ //////////////////////   Borrrarrrr
+        
+        Inicio.ventanaPrincipal = new VentanaPrincipal();
+        Inicio.ventanaCompacta = new VentanaCompacta();
+      //  Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 650);
+        Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 1000);
+        Inicio.ventanaCompacta.setBounds(Inicio.coordenadas.coordenadas[2].x, Inicio.coordenadas.coordenadas[2].y, 750, 180);
       
+        Inicio.ventanaMicro = new VentanaMicro();
+        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 680, 90);
+        
        // setSize(500,700);
         
     }// </editor-fold>
