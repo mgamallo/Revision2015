@@ -286,38 +286,55 @@ class Worker extends SwingWorker<Double, Integer>{
 
 	 
 	    		Inicio.ventanaPrincipal = new VentanaPrincipal();
-		        Inicio.ventanaCompacta = new VentanaCompacta();
-		        Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 650);
-		        Inicio.ventanaCompacta.setBounds(Inicio.coordenadas.coordenadas[2].x, Inicio.coordenadas.coordenadas[2].y, 750, 180);
-
+		   //     Inicio.ventanaCompacta = new VentanaCompacta();
+		        Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 970);
+		        Inicio.ventanaPrincipal.setResizable(false);
+		        
+		   /*     Inicio.ventanaCompacta.setBounds(Inicio.coordenadas.coordenadas[2].x, Inicio.coordenadas.coordenadas[2].y, 750, 180);
+		        Inicio.ventanaCompacta.jPanel1.removeKeyListener(Inicio.ventanaCompacta.listener);
+		        Inicio.ventanaCompacta.setVisible(false); */
+		        
+		        Inicio.ventanaMicro = new VentanaMicro();
+    	        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 730, 60);
+    	        
+    	        
 		        System.out.println("Visualización vale..." + visualizacion);
 		        
 	    		if(visualizacion == 2 || visualizacion == 1){
 		        	Inicio.ventanaPrincipal.setVisible(false);
-	    	        Inicio.ventanaCompacta.setVisible(false);
-	    	        
-	    	        Inicio.ventanaCompacta.jPanel1.removeKeyListener(Inicio.ventanaCompacta.listener);
-	    			
-	    	        //Inicio.ventanaA3 = new VentanaA3(true);
-	    	        Inicio.ventanaIntegral = new VentanaIntegral();
-	    	        Inicio.ventanaIntegral.setBounds(Inicio.coordenadas.coordenadas[4].x, Inicio.coordenadas.coordenadas[4].y, 360,1150);
-	    	        
-	    	        Inicio.ventanaMicro = new VentanaMicro();
-	    	        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 680, 90);
-	    	        
+	    	       //
+
+		    	        Inicio.ventanaIntegral = new VentanaIntegral();
+		    	        Inicio.ventanaIntegral.setBounds(Inicio.coordenadas.coordenadas[4].x, Inicio.coordenadas.coordenadas[4].y, 360,1150);
+
+	        
+
 	    	        // Inicio.ventanaNombres = new VentanaNombres();
 	    	        // Inicio.ventanaNombresYServicios = new VentanaNombresYServicios();
 	    			if(Inicio.nombrePc.equals("mahc13p")){
 	    				Inicio.acrobatAntiguo = true;
-	    				Inicio.rutaFocoAcrobat = "cal\\FocoAcrobatV2.exe";
+	    				Inicio.rutaFocoAcrobatV = "cal\\FocoAcrobatV2.exe";
 	    			}
+	    			else{
+	    				Inicio.acrobatAntiguo = false;
+	    				Inicio.rutaFocoAcrobatV = "cal\\FocoAcrobatV.exe";
+	    			}
+	    			/*
 	    			else{
 	    				Inicio.rutaFocoAcrobat = "cal\\FocoAcrobatV.exe";
 	    			}
+	    			*/
 	    			Inicio.ventanaExplorador.setState(Frame.ICONIFIED);
 	    		}
 		        
-		        File archivo2 = new File(Inicio.rutaFocoAcrobat);
+	    		File archivo2 = null;
+	    		if(visualizacion == 0){
+	    			archivo2 = new File(Inicio.rutaFocoAcrobat);
+	    		}
+	    		else{
+	    			archivo2 = new File(Inicio.rutaFocoAcrobatV);
+	    		}
+		        
 		        System.out.println("El archivo existe?" + archivo2.exists());
 		        File archivo3 = new File(Inicio.rutaFocoNHC);
 		        try {
@@ -331,6 +348,36 @@ class Worker extends SwingWorker<Double, Integer>{
 		        
 	        	Inicio.ventanaRevisionAbierta = true;
 
+	    	}
+	    	else{
+	    		if(visualizacion == 0){
+		    		Inicio.ventanaPrincipal = new VentanaPrincipal();
+	 		        Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 970);
+	 		        Inicio.ventanaPrincipal.setResizable(false);
+	    			Inicio.ventanaPrincipal.setVisible(true);
+	    			
+	    			Inicio.utiles.habilitarTeclas("Teclas On", Inicio.visualizacion);
+	    			Inicio.utiles.habilitarTeclas("Teclas Off", Inicio.visualizacion);
+	    			
+	    			if(Inicio.ventanaIntegral != null)
+	    				Inicio.ventanaIntegral.setVisible(false);
+	    			
+	    			Inicio.ventanaExplorador.setState(Frame.NORMAL);
+	    		}
+	    		else if(visualizacion == 1 || visualizacion == 2){
+	    			
+	    			Inicio.utiles.habilitarTeclas("Teclas On", Inicio.visualizacion);
+	    			Inicio.utiles.habilitarTeclas("Teclas Off", Inicio.visualizacion);
+	    			
+	    			if(Inicio.ventanaPrincipal != null)
+	    				Inicio.ventanaPrincipal.setVisible(false);
+	    			if(Inicio.ventanaIntegral != null)
+	    				Inicio.ventanaIntegral.setVisible(true);
+	    			else{
+		    	        Inicio.ventanaIntegral = new VentanaIntegral();
+		    	        Inicio.ventanaIntegral.setBounds(Inicio.coordenadas.coordenadas[4].x, Inicio.coordenadas.coordenadas[4].y, 360,1150);
+	    			}
+	    		}
 	    	}
 	    	
 	    	if(Inicio.documentacionDeUrgencias){

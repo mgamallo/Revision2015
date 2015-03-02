@@ -493,7 +493,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 		Inicio.jBDeshabilitar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				// jBEliminarActionPerformed(evt);
-				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText(),Inicio.visualizacion);
 				jPanel1.requestFocus();
 			}
 		});
@@ -550,11 +550,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 		jBExtraer.setText("Extraer");
 		jBExtraer
 				.setToolTipText("Obtiene la ruta y nombre del nuevo archivo, y lo coloca en el portapapeles");
+		jBExtraer.setBackground(Color.green);
 		jBExtraer.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				// jBExtraerActionPerformed(evt);
 				
-				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText(),Inicio.visualizacion);
 				
 				if(Inicio.ventanaExtraer != null){
 					Inicio.ventanaExtraer.dispose();
@@ -576,6 +577,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jBFirmar.setIcon(new ImageIcon("iconos/drawing_pen 32.png"));
         jBFirmar.setText("Firmar");
         jBFirmar.setEnabled(false);
+        jBFirmar.setVisible(false);
         jBFirmar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -613,20 +615,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             		
                 .addContainerGap()
                 .addComponent(Inicio.jBDeshabilitar)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jBEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBApartar)
+                .addComponent(jBEliminar,90,90,90)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBApartar,90,90,90)
                 .addGap(80, 80, 80)
-                .addComponent(jBCarpeta)
+                .addComponent(jBCarpeta,90,90,90)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jBExtraer)
+                .addComponent(jBExtraer,90,90,90)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(jButton9,90,90,90)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10)
+                .addComponent(jButton10,90,90,90)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBFirmar))
+                .addComponent(jBFirmar,90,90,90))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -668,7 +670,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBGrabar)
+                .addComponent(jBGrabar,100,100,100)
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(

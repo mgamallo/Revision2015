@@ -47,9 +47,9 @@ public class PreferenciasUsuario {
 		coordenadas[0].y = rectExplor.y;
 		coordenadas[1].x = rectExplor.width;
 		coordenadas[1].y = rectExplor.height;
-		rectExplor = new Rectangle(Inicio.ventanaCompacta.getBounds());
+	/*	rectExplor = new Rectangle(Inicio.ventanaCompacta.getBounds());
 		coordenadas[2].x = rectExplor.x;
-		coordenadas[2].y = rectExplor.y;
+		coordenadas[2].y = rectExplor.y; */
 		rectExplor = new Rectangle(Inicio.ventanaPrincipal.getBounds());
 		coordenadas[3].x = rectExplor.x;
 		coordenadas[3].y = rectExplor.y;

@@ -20,10 +20,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.ScrollPaneConstants;
 
 public class VentanaIntegral extends javax.swing.JFrame {
 
+
+	private JMenuItem jMenuVentanaA3;
+	private JMenuItem jMenuSalir;
 
 	/**
      * Creates new form VentanaIntegral
@@ -83,10 +87,62 @@ public class VentanaIntegral extends javax.swing.JFrame {
     	
     	jMenuVentanaHorizontal = new JMenuItem("Ventana Horizontal");
     	jMenuVentanaVertical = new JMenuItem("Ventana Vertical");
+    	jMenuVentanaA3 = new JMenuItem("Ventana A3");
+    	jMenuSalir = new JMenuItem("Salir");
     	
     	jMenuRevisar.add(jMenuVentanaHorizontal);
     	jMenuRevisar.add(jMenuVentanaVertical);
+    	jMenuRevisar.add(jMenuVentanaA3);
+    	jMenuRevisar.add(new JSeparator());
+    	jMenuRevisar.add(jMenuSalir);
     	
+        jMenuVentanaHorizontal.addActionListener(
+        		new ActionListener(){
+        			public void actionPerformed(ActionEvent evento){
+        				//	Menú horizontal
+        				Inicio.menuVertical = false;
+        				Inicio.A3 = false;
+        				Inicio.visualizacion = 0;
+        				abrirCarpetaConVisualizacion(evento,0);
+        			}
+	        });
+        
+        
+        jMenuVentanaVertical.addActionListener(
+        		new ActionListener(){
+        			public void actionPerformed(ActionEvent evento){
+        				//	Menú vertical
+        				Inicio.menuVertical = true;
+        				Inicio.A3 = false;
+        				Inicio.visualizacion = 1;
+        				abrirCarpetaConVisualizacion(evento,1);
+        			}
+	        });
+    	
+        jMenuVentanaA3.addActionListener(
+        		new ActionListener(){
+        			public void actionPerformed(ActionEvent evento){
+        				//	Menú A3
+        				Inicio.menuVertical = true;
+        				Inicio.A3 = true;
+        				Inicio.visualizacion = 2;
+        				abrirCarpetaConVisualizacion(evento,2);
+        			}
+	        });
+        
+        jMenuSalir.addActionListener(new ActionListener(){			//	Guardar preferencias
+        	public void actionPerformed(ActionEvent evento){
+        		if(Inicio.ventanaRevisionAbierta){
+            	//	Inicio.coordenadas.grabarCoordenadas();
+        		}
+
+        		
+        		CerrarTodo cerrar = new CerrarTodo();
+        		cerrar.close();
+        		System.exit(0);
+        	}
+        	
+        });
             
         jMenuFirmar = new JMenu("Firmar");
         jMenuItemFirmar = new JMenuItem("Firmar");
@@ -650,7 +706,7 @@ public class VentanaIntegral extends javax.swing.JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				// jBExtraerActionPerformed(evt);
 				
-				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText(),Inicio.visualizacion);
 				
 				if(Inicio.ventanaExtraer != null){
 					Inicio.ventanaExtraer.dispose();
@@ -998,6 +1054,44 @@ public class VentanaIntegral extends javax.swing.JFrame {
 		new FocalAdobe(100);
 	}
     
+    private void abrirCarpetaConVisualizacion(ActionEvent evento, int visualizacion){
+		
+    	/*
+    	 * 	visualización:	0	Menú grande
+    	 * 					1	Menú vertical
+    	 * 					2	Menú A3
+    	 * 					3	Menú sólo NHC
+    	 */
+     	
+    	VentanaExplorador.triggerVigo = false;
+		
+	//	VentanaInicioProgreso vp = new VentanaInicioProgreso();
+		//vp.setVisible(false);
+		 
+		CargaListaPdfs pdfs = new CargaListaPdfs(true);
+		
+		//vp.setVisible(true);
+		
+		
+		if(pdfs.cargado == true){
+			
+			int tamaño = pdfs.nombrePdfs.length;
+			int aux = pdfs.ficheros.length;
+			/*
+			 Inicio.modelo = new DefaultListModel();
+			Inicio.modelo.addElement("Cargando...");
+			listaPdfs.setModel(Inicio.modelo);
+			*/
+			
+	
+			
+			VentanaProgreso vprogreso = new VentanaProgreso(pdfs, visualizacion);
+			
+
+			
+		}
+    }
+	
     /**
      * @param args the command line arguments
      */

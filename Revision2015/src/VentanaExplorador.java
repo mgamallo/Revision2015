@@ -167,7 +167,9 @@ public class VentanaExplorador extends javax.swing.JFrame {
         				//	Menú horizontal
         				Inicio.menuVertical = false;
         				Inicio.A3 = false;
+        				Inicio.visualizacion = 0;
         				abrirCarpetaConVisualizacion(evento,0);
+        				
         			}
 	        });
         //	Ventana vertical
@@ -177,6 +179,7 @@ public class VentanaExplorador extends javax.swing.JFrame {
         			public void actionPerformed(ActionEvent evento){
         				//	Menú vertical
         				Inicio.menuVertical = true;
+        				Inicio.visualizacion = 1;
         				Inicio.A3 = false;
         				abrirCarpetaConVisualizacion(evento,1);
         			}
@@ -189,6 +192,7 @@ public class VentanaExplorador extends javax.swing.JFrame {
         			public void actionPerformed(ActionEvent evento){
         				//	Menú A3
         				Inicio.menuVertical = true;
+        				Inicio.visualizacion = 2;
         				Inicio.A3 = true;
         				abrirCarpetaConVisualizacion(evento,2);
         			}
@@ -1036,7 +1040,7 @@ public class VentanaExplorador extends javax.swing.JFrame {
         setVisible(true);
         
  //////////////////////   Borrrarrrr
-        
+  /*      
         Inicio.ventanaPrincipal = new VentanaPrincipal();
         Inicio.ventanaCompacta = new VentanaCompacta();
       //  Inicio.ventanaPrincipal.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y, 750, 650);
@@ -1044,8 +1048,8 @@ public class VentanaExplorador extends javax.swing.JFrame {
         Inicio.ventanaCompacta.setBounds(Inicio.coordenadas.coordenadas[2].x, Inicio.coordenadas.coordenadas[2].y, 750, 180);
       
         Inicio.ventanaMicro = new VentanaMicro();
-        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 680, 90);
-        
+        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 730, 60);
+    */    
        // setSize(500,700);
         
     }// </editor-fold>

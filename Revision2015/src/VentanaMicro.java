@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -16,6 +20,8 @@ public class VentanaMicro extends javax.swing.JFrame implements MouseListener {
     private JPanel panelMover;
 	private Point coordenadasRaton = new Point();
 
+	public KeyListener listener;
+	
 	/**
      * Creates new form VentanaMicro
      */
@@ -40,6 +46,8 @@ public class VentanaMicro extends javax.swing.JFrame implements MouseListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
+    	setTitle("VentanaNHC");
+    	
      	panelMover = new JPanel();
         jPanel1 = new javax.swing.JPanel();
         Inicio.jBNHCp = new javax.swing.JButton();
@@ -67,6 +75,109 @@ public class VentanaMicro extends javax.swing.JFrame implements MouseListener {
         Inicio.jBNombreDocp.setPreferredSize(new java.awt.Dimension(360, 60));
         Inicio.jBNombreDocp.setMinimumSize(new java.awt.Dimension(360, 60));
         Inicio.jBNombreDocp.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        
+        listener = new KeyListener() {
+    		@Override
+    		public void keyTyped(KeyEvent e) {
+    			System.out.println("keyTyped="
+    					+ KeyEvent.getKeyText(e.getKeyCode()));
+    		}
+
+    		@Override
+    		public void keyPressed(KeyEvent e) {
+    			System.out.println("keyPressed="
+    					+ KeyEvent.getKeyText(e.getKeyCode()));
+    		}
+
+    		@Override
+    		public void keyReleased(KeyEvent e) {
+
+    			System.out.println(e.getKeyText(e.getKeyCode()));
+    			System.out.println(e.getKeyCode());
+    			
+    			
+    			switch (e.getKeyCode()) {
+    			case KeyEvent.VK_W:
+    				
+    				if(Inicio.ventanaIntroducirNHC != null){
+            			Inicio.ventanaIntroducirNHC.dispose();
+            		}
+
+    				Inicio.utiles.jBGrabarPagina(); 
+    	 	   			
+
+    				break;
+    			case KeyEvent.VK_R:
+    				
+    				// System.out.println("Hola estoy pulsando la r en la ventana compacta");
+    				
+    				new Acrobat().rotarPagina();
+    				if ((Inicio.jBServicio.getText().equals(Inicio.CARC) || Inicio.jBServicio
+    						.getText().equals(Inicio.ANRC) || Inicio.documentacionDeUrgencias)
+    						&& Inicio.jBNombreDoc.getText().equals("X")) {
+    					// if(Inicio.listaDocumentos[Inicio.numeroPdf].fisica.numPaginas
+    					// <= 2){
+    					Inicio.jBNombreDocp.setText(Inicio.EKG);
+    					Inicio.jBNombreDoc.setText(Inicio.EKG);
+    					if(Inicio.documentacionDeUrgencias){
+    						Inicio.jBServiciop.setText(Inicio.URG);
+    						Inicio.jBServicio.setText(Inicio.URG);
+    					}else{
+    						Inicio.jBServiciop.setText(Inicio.CARC);
+    						Inicio.jBServicio.setText(Inicio.CARC);
+    					}
+
+    					Inicio.jBNombreDocp.setBackground(Color.green);
+    					Inicio.jBNombreDoc.setBackground(Color.green);
+    					// }
+    				}
+    				break;
+    			case KeyEvent.VK_E:
+    				new Acrobat().eliminarPagina();
+    				break;
+    			case KeyEvent.VK_Q:
+    				
+    				System.out.println("Hola estoy pulsando la q en la ventana compacta");
+    				
+    				if(Inicio.ventanaIntroducirNHC != null){
+    					Inicio.ventanaIntroducirNHC.dispose();
+    				}
+    				
+    				
+    				Inicio.ventanaIntroducirNHC = new InterfazIntroducirNHC(null,true, Inicio.jBNHCp);
+    				Inicio.ventanaIntroducirNHC.setVisible(true);
+    				break;
+    				
+      			case KeyEvent.VK_SPACE:  
+      				System.out.println("Hola estoy pulsando la barra espaciadora en la ventana compacta");
+      				
+      				if(Inicio.ventanaIntroducirNHC != null){
+      	  				Inicio.ventanaIntroducirNHC.validarNHC(Inicio.ventanaIntroducirNHC.jBNHCAnterior.getText());
+      	  				Inicio.ventanaIntroducirNHC.dispose();
+      	  				new FocalAdobe(100);
+      	  				break;	
+      				}
+
+    			case KeyEvent.VK_ESCAPE: /* cerrarAutoHotKey() */
+    				;
+    				break;
+    			}
+
+    		}
+    	};
+    	
+    	
+    	panelMover.addKeyListener(listener);
+    	panelMover.setFocusable(true);
+        
+		Inicio.jBNHCp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Inicio.ventanaIntroducirNHC= new InterfazIntroducirNHC(null,false, Inicio.jBNHCp);
+				Inicio.ventanaIntroducirNHC.setVisible(true);
+				panelMover.requestFocus();
+				new Acrobat().getFocus();
+			}
+		});
         
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -125,8 +236,8 @@ public class VentanaMicro extends javax.swing.JFrame implements MouseListener {
 		});
 
         setBackground(Color.black);
-        panelMover.setBackground(Color.black);
-        jPanel1.setBackground(Color.black);
+        panelMover.setBackground(Color.orange);
+        jPanel1.setBackground(Color.pink);
 		
         pack();
 

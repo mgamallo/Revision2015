@@ -20,8 +20,10 @@ public class CerrarTodo {
 			
 		 String cmd6 = "taskkill.exe /F /IM FocoAcrobat2.exe /T";
 		 String cmd7 = "taskkill.exe /F /IM FocoAcrobatV.exe /T";
+		 
+		 String cmd8 = "taskkill.exe /F /IM FocoAcrobat2015.exe /T";
 
-		 Process hijo, hijo2, hijo3, hijo4, hijo6, hijo7;
+		 Process hijo, hijo2, hijo3, hijo4, hijo6, hijo7, hijo8;
 		 try {
 				hijo = Runtime.getRuntime().exec(cmd);
 				hijo2 = Runtime.getRuntime().exec(cmd2);
@@ -29,6 +31,7 @@ public class CerrarTodo {
 				hijo4 = Runtime.getRuntime().exec(cmd5);
 				hijo6 = Runtime.getRuntime().exec(cmd6);
 				hijo7 = Runtime.getRuntime().exec(cmd7);
+				hijo8 = Runtime.getRuntime().exec(cmd8);
 				
 				hijo.waitFor();
 				hijo2.waitFor();
@@ -36,6 +39,7 @@ public class CerrarTodo {
 				hijo4.waitFor();
 				hijo6.waitFor();
 				hijo7.waitFor();
+				hijo8.waitFor();
 				
 				Thread.sleep(500);
 								
@@ -53,7 +57,6 @@ public class CerrarTodo {
 		 
 		 Inicio.ventanaExplorador.dispose();
 		 if(Inicio.ventanaRevisionAbierta){
-			 Inicio.ventanaCompacta.dispose();
 			 Inicio.ventanaPrincipal.dispose();
 		 }
 

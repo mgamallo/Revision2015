@@ -398,9 +398,9 @@ public class Utiles {
 			}
 	}
 
-	public void habilitarTeclas(String texto) {
+	public void habilitarTeclas(String texto, int visualizacion) {
 		if (texto.equals("Teclas On")) {
-			String cmd = "taskkill.exe /F /IM FocoAcrobat.exe /T";
+			String cmd = "taskkill.exe /F /IM FocoAcrobat2015.exe /T";
 			String cmd2 = "taskkill.exe /F /IM FocoNHC.exe /T";
 			String cmd3 = "taskkill.exe /F /IM FocoAcrobat2.exe /T";
 			String cmd4 = "taskkill.exe /F /IM FocoAcrobatV.exe /T";
@@ -434,7 +434,15 @@ public class Utiles {
 
 		} else if (texto.equals("Teclas Off")) {
 
-			File archivo2 = new File(Inicio.rutaFocoAcrobat);
+			File archivo2 = null;
+			System.out.println("Visualizacion ... " + visualizacion);
+			if(visualizacion == 0){
+				archivo2 = new File(Inicio.rutaFocoAcrobat);
+			}
+			else if(visualizacion == 1 || visualizacion == 2){
+				archivo2 = new File(Inicio.rutaFocoAcrobatV);
+			}
+			System.out.println("autohotkey..." + archivo2.getName());
 			File archivo3 = new File(Inicio.rutaFocoNHC);
 			try {
 				Process p = Runtime.getRuntime().exec(

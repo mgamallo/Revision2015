@@ -122,7 +122,9 @@ public class VentanaExtraer extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				
+				
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText(),Inicio.visualizacion);
 				if(Inicio.ventanaA3 != null){
 					Inicio.ventanaA3.habilitarTeclas(Inicio.ventanaA3.jBDeshabilitar.getText());
 				}
@@ -155,8 +157,9 @@ public class VentanaExtraer extends JFrame{
         jPanelS.setBackground(new java.awt.Color(255,241,182));
         jPanelC.setBackground(Color.pink);
         
-        Rectangle rectangulo = Inicio.ventanaCompacta.getBounds();
-        setLocation(rectangulo.x,rectangulo.y + rectangulo.height);
+        Rectangle rectangulo = Inicio.ventanaPrincipal.getBounds();
+        setLocation(rectangulo.x - 20,rectangulo.y + 400);
+        setAlwaysOnTop(true);
         
         requestFocus();
         

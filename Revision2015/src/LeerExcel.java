@@ -20,14 +20,14 @@ public class LeerExcel {
 	String[] listaDocumentos;
 	String[] listaServicios;
 	
-	DefaultListModel<String> listaServiciosLista;
-	DefaultListModel<String> listaDocumentosDLM;
-	DefaultListModel<String> listaComunes;
-	DefaultListModel<String> listaHabituales1;
-    DefaultListModel<String> listaHabituales2;
-    DefaultListModel<String> listaHabitualesUrg;
+	DefaultListModel listaServiciosLista;
+	DefaultListModel listaDocumentosDLM;
+	DefaultListModel listaComunes;
+	DefaultListModel listaHabituales1;
+    DefaultListModel listaHabituales2;
+    DefaultListModel listaHabitualesUrg;
     
-    DefaultListModel<String> vinculacionServicio;
+    DefaultListModel vinculacionServicio;
     
     int numServicios = 0;
     int numDocumentos = 0;
@@ -40,10 +40,10 @@ public class LeerExcel {
     
     Object[][] tablaCoordenadas;
     Object[][] tablaVisor;
-    DefaultListModel<String> listaUsuariosLista;
-    DefaultListModel<String> listaUsuariosListaUrg;
-    DefaultComboBoxModel<String> listaUsuarios;
-    DefaultComboBoxModel<String> listaUsuariosUrg;
+    DefaultListModel listaUsuariosLista;
+    DefaultListModel listaUsuariosListaUrg;
+    DefaultComboBoxModel listaUsuarios;
+    DefaultComboBoxModel listaUsuariosUrg;
     
     boolean coordenadasGrabadas = false;
     
@@ -177,14 +177,14 @@ public class LeerExcel {
 	        
 	        
      
-	        listaServiciosLista = new DefaultListModel<String>();
+	        listaServiciosLista = new DefaultListModel();
 	        for(int i=0;i<numServicios;i++){
 	    //    	System.out.println(listaServicios[i].toString());
 	        	listaServiciosLista.addElement(listaServicios[i]);
 	        }
 	        
 	    //  Leer lista de todos los documentos        
-            listaDocumentosDLM = new DefaultListModel<String>();
+            listaDocumentosDLM = new DefaultListModel();
             for(int i=0;i<listaDocumentos.length;i++){
                 listaDocumentosDLM.addElement(listaDocumentos[i]);
             }   
@@ -205,10 +205,10 @@ public class LeerExcel {
 	        int numHabitualesU = 0;
 	        int numComunes = 0;
 	        
-	        listaComunes = new DefaultListModel<String>();
-	        listaHabituales1 = new DefaultListModel<String>();
-            listaHabituales2 = new DefaultListModel<String>();
-            listaHabitualesUrg = new DefaultListModel<String>();
+	        listaComunes = new DefaultListModel();
+	        listaHabituales1 = new DefaultListModel();
+            listaHabituales2 = new DefaultListModel();
+            listaHabitualesUrg = new DefaultListModel();
 	        
 	        for(int fila = 0; fila < numDocumentos;fila++){
 	        	for(int columna = 0;columna < 4; columna++){
@@ -271,8 +271,8 @@ public class LeerExcel {
 	        	numFilasUsDoc++;
 	        }
             System.out.println("número de filas " + numFilasUsDoc);
-            listaUsuarios = new DefaultComboBoxModel<String>();
-            listaUsuariosLista = new DefaultListModel<String>();
+            listaUsuarios = new DefaultComboBoxModel();
+            listaUsuariosLista = new DefaultListModel();
             for(int i=0;i<numFilasUsDoc;i++){
             	listaUsuarios.addElement(hoja.getCell(0, i).getContents().toString());
             	listaUsuariosLista.addElement(hoja.getCell(0, i).getContents().toString());
@@ -309,8 +309,8 @@ public class LeerExcel {
 	        }
             System.out.println("Numero filas urgencias " + numFilasUsUrg);
             
-            listaUsuariosUrg = new DefaultComboBoxModel<String>();
-            listaUsuariosListaUrg = new DefaultListModel<String>();
+            listaUsuariosUrg = new DefaultComboBoxModel();
+            listaUsuariosListaUrg = new DefaultListModel();
             for(int i=0;i<numFilasUsUrg;i++){
             	listaUsuariosUrg.addElement(hoja.getCell(0, i).getContents().toString());
             	listaUsuariosListaUrg.addElement(hoja.getCell(0, i).getContents().toString());
@@ -466,11 +466,11 @@ public class LeerExcel {
 	}
 	
 	
-    DefaultListModel<String> getDocServicio(String servicio){
+    DefaultListModel getDocServicio(String servicio){
         int numVinculaciones = 0;
         int numServicio =1;
         boolean encontrado = false;
-        DefaultListModel<String> vinculacionAux = new DefaultListModel<String>();
+        DefaultListModel vinculacionAux = new DefaultListModel();
 
         for(int i=0;i<listaServicios.length;i++){
         	if(listaServicios[i].contains(servicio)){
@@ -503,7 +503,7 @@ public class LeerExcel {
         }
         */
         
-        vinculacionServicio = new DefaultListModel<String>();
+        vinculacionServicio = new DefaultListModel();
         
         //  Devolvemos las vinculaciones en un array de cadena
         String[] vinculaciones = new String[numVinculaciones+1];

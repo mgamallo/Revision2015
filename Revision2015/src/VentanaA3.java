@@ -112,7 +112,7 @@ public class VentanaA3 extends javax.swing.JFrame {
 
         jLNHC.setText("NHC");
 
-        Inicio.jBNHCp.setText("1222333");
+        Inicio.jBNHCp.setText("");
         Inicio.jBNHCp.setFont(new java.awt.Font("Serif", 1, 45)); // NOI18N
         Inicio.jBNHCp.setBackground(Color.green);
         Inicio.jBNHCp.addActionListener(new java.awt.event.ActionListener() {
@@ -160,10 +160,10 @@ public class VentanaA3 extends javax.swing.JFrame {
         jList1.setBackground(new java.awt.Color(255, 241, 182));
         jList1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         
-        String string[] = { "Cuidados intensivos", "URPA", "Pruebas diagnósticas" };
+        String nombresA3[] = { Inicio.URPA,Inicio.CUIDADOS_INTENSIVOS };
         listaNombres = new DefaultListModel();
-        for(int i=0;i<3;i++){
-        	listaNombres.addElement(string[i]);
+        for(int i=0;i<nombresA3.length;i++){
+        	listaNombres.addElement(nombresA3[i]);
         }
         jList1.setModel(listaNombres);
         

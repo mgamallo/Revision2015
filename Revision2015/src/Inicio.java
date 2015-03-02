@@ -33,7 +33,7 @@ public class Inicio extends JFrame {
 	static String nombrePc;
 	static boolean acrobatAntiguo = false;
 	
-	static String rutaFocoAcrobat = "cal\\FocoAcrobat.exe";
+	static String rutaFocoAcrobat = "cal\\FocoAcrobat2015.exe";
 	static String rutaFocoNHC = "cal\\FocoNHC.exe";
 	static String rutaFocoAcrobatV = "cal\\FocoAcrobatV.exe";
 
@@ -52,6 +52,7 @@ public class Inicio extends JFrame {
 	static final String INTERCONSULTA = "Interconsulta";
 	public static final String VIDEONISTAGMOGRAFÍA = "Videonistagmografia";
 	public static final String URPA = "Postanestesia";
+	public static final String CUIDADOS_INTENSIVOS = "Evolutivo enfermaría";
 	public static final String MAPA_DERMATOMAS = "Anamnese (Mapa dermatomas)";
 	public static final String ENFERMERIA_QUIRURGICA = "Folla enfermaría circulante";
 	
@@ -102,7 +103,6 @@ public class Inicio extends JFrame {
     static boolean carpetaRecienCargada = true;
 
     static VentanaPrincipal ventanaPrincipal;
-    static VentanaCompacta ventanaCompacta;
     static VentanaExplorador ventanaExplorador;
     static VentanaComprobar ventanaComprobacion;
     static InterfazIntroducirNHC ventanaIntroducirNHC;
@@ -112,6 +112,10 @@ public class Inicio extends JFrame {
     static VentanaNombres ventanaNombres;
     static VentanaIntegral ventanaIntegral;
     static VentanaMicro ventanaMicro;
+    
+    static int visualizacion = 0;    	// 0 horizontal
+    									// 1 vertical
+    									// 2 vertical a3
      
     static int numeroPdf;
     static int tamañoCarpetaPdf;

@@ -76,8 +76,8 @@ public class VentanaComprobar extends JDialog {
 		
 		getContentPane().add(panel);
 		
-		Rectangle rectangulo = Inicio.ventanaCompacta.getBounds();
-        setLocation(rectangulo.x,rectangulo.y + rectangulo.height);
+	/*	Rectangle rectangulo = Inicio.ventanaCompacta.getBounds();
+        setLocation(rectangulo.x,rectangulo.y + rectangulo.height); */
 		
 		setVisible(true);
 		

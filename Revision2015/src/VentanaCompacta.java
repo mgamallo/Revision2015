@@ -306,7 +306,7 @@ public class VentanaCompacta extends javax.swing.JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				// jBExtraerActionPerformed(evt);
 				
-				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText(),Inicio.visualizacion);
 				
 				if(Inicio.ventanaExtraer != null){
 					Inicio.ventanaExtraer.dispose();
@@ -398,7 +398,7 @@ public class VentanaCompacta extends javax.swing.JFrame {
 		Inicio.jBDeshabilitar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				// jBEliminarActionPerformed(evt);
-				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText());
+				Inicio.utiles.habilitarTeclas(Inicio.jBDeshabilitar.getText(),Inicio.visualizacion);
 				jPanel1.requestFocus();
 			}
 		});
