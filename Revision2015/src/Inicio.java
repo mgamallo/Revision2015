@@ -36,6 +36,7 @@ public class Inicio extends JFrame {
 	static String rutaFocoAcrobat = "cal\\FocoAcrobat2015.exe";
 	static String rutaFocoNHC = "cal\\FocoNHC.exe";
 	static String rutaFocoAcrobatV = "cal\\FocoAcrobatV.exe";
+	static String rutaFocoAcrobat2015v7 = "cal\\FocoAcrobat2015v7";
 
 	static boolean menuVertical = false;
 	
@@ -190,6 +191,10 @@ public class Inicio extends JFrame {
 		if(nombrePc.equals("mahc13p")){
 			acrobatAntiguo = true;
 			rutaFocoAcrobat = "cal\\FocoAcrobat2.exe";
+			rutaFocoAcrobatV = "cal\\FocoAcrobatV2.exe";
+		}
+		else if(nombrePc.toLowerCase().contains("mahc35p")){
+			rutaFocoAcrobat = rutaFocoAcrobat2015v7;
 		}
 		
 		excel = new LeerExcel();

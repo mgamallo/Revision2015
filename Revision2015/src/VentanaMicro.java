@@ -59,19 +59,19 @@ public class VentanaMicro extends javax.swing.JFrame implements MouseListener {
         jPanel1.setMaximumSize(new java.awt.Dimension(700, 60));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 60));
 
-        Inicio.jBNHCp.setText("2.123.456");
+        Inicio.jBNHCp.setText("");
         Inicio.jBNHCp.setMaximumSize(new java.awt.Dimension(180, 60));
         Inicio.jBNHCp.setMinimumSize(new java.awt.Dimension(180, 60));
         Inicio.jBNHCp.setPreferredSize(new java.awt.Dimension(180, 60));
         Inicio.jBNHCp.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
 
-        Inicio.jBServiciop.setText(Inicio.CARC);
+        Inicio.jBServiciop.setText("");
         Inicio.jBServiciop.setPreferredSize(new java.awt.Dimension(70, 60));
         Inicio.jBServiciop.setMaximumSize(new java.awt.Dimension(70, 60));
         Inicio.jBServiciop.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         Inicio.jBServiciop.setBackground(new java.awt.Color(233, 0, 0));
 
-        Inicio.jBNombreDocp.setText("jButton3");
+        Inicio.jBNombreDocp.setText("");
         Inicio.jBNombreDocp.setPreferredSize(new java.awt.Dimension(360, 60));
         Inicio.jBNombreDocp.setMinimumSize(new java.awt.Dimension(360, 60));
         Inicio.jBNombreDocp.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
@@ -170,11 +170,18 @@ public class VentanaMicro extends javax.swing.JFrame implements MouseListener {
     	panelMover.addKeyListener(listener);
     	panelMover.setFocusable(true);
         
+    	Inicio.jBServiciop.setFocusable(false);
+    	Inicio.jBNombreDocp.setFocusable(false);
+    	Inicio.jBNHCp.setToolTipText("Tambien pulsando q");
+    	
+    	
 		Inicio.jBNHCp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Inicio.ventanaIntroducirNHC= new InterfazIntroducirNHC(null,false, Inicio.jBNHCp);
 				Inicio.ventanaIntroducirNHC.setVisible(true);
+				Inicio.jBNHCp.setFocusable(false);
 				panelMover.requestFocus();
+				Inicio.ventanaIntroducirNHC.setAlwaysOnTop(true);
 				new Acrobat().getFocus();
 			}
 		});

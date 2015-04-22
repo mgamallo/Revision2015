@@ -507,7 +507,7 @@ public class VentanaCompacta extends javax.swing.JFrame {
 														javax.swing.GroupLayout.DEFAULT_SIZE,
 														javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addContainerGap(751, Short.MAX_VALUE)));
-
+	
 		pack();
 	}// </editor-fold>
 

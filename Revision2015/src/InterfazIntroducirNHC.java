@@ -52,10 +52,10 @@ public class InterfazIntroducirNHC extends javax.swing.JDialog {
         setModal(false);
         setPreferredSize(new java.awt.Dimension(400, 120));
         setResizable(false);
-        // setLocationRelativeTo(botonOrigen);
+        setLocationRelativeTo(botonOrigen);
         // setLocation(1000, 10);
-        setLocationRelativeTo(Inicio.jBNHCp);
-        
+        // setLocationRelativeTo(Inicio.jBNHC);
+         
         if(Inicio.menuVertical){
         	Rectangle rectangulo = Inicio.ventanaMicro.getBounds();
         	setLocation(rectangulo.x + 150,rectangulo.y+10);
@@ -174,6 +174,9 @@ public class InterfazIntroducirNHC extends javax.swing.JDialog {
         JPanel panelN = new JPanel();
         JPanel panelC = new JPanel();
         JPanel panelS = new JPanel();
+        
+        panelN.setBackground(Color.red);
+        panelS.setBackground(Color.red);
         
         panel.setLayout(new BorderLayout());
         //panelN.add(jLNumero);

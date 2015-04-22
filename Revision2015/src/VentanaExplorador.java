@@ -980,7 +980,7 @@ public class VentanaExplorador extends javax.swing.JFrame {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 	    	           }
-	    	           Inicio.ventanaIntroducirNHC = new InterfazIntroducirNHC(null, false, Inicio.jBNHCp);
+	    	           Inicio.ventanaIntroducirNHC = new InterfazIntroducirNHC(null, false, Inicio.jBNHC);
 	    	           Inicio.ventanaIntroducirNHC.setVisible(true);
 	    	           
 	    	           //dialog.requestFocus();

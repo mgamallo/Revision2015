@@ -499,7 +499,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 		});
         
         
-        jBEliminar.setIcon(new ImageIcon("Iconos/Cubo Basura32x32.png"));
+    //    jBEliminar.setIcon(new ImageIcon("Iconos/Cubo Basura32x32.png"));
         jBEliminar.setText("Eliminar");
         jBEliminar.setToolTipText("Elimina el documento");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -523,7 +523,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBApartar.setIcon(new ImageIcon("iconos/Clip32x32.png"));
+       // jBApartar.setIcon(new ImageIcon("iconos/Clip32x32.png"));
         jBApartar.setText("Apartar");
         jBApartar.setToolTipText("Aparta el documento");
         
@@ -533,7 +533,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBCarpeta.setIcon(new ImageIcon("iconos/carpeta 32.png"));
+      //  jBCarpeta.setIcon(new ImageIcon("iconos/carpeta 32.png"));
         jBCarpeta.setText("Carpeta");
         jBCarpeta.setToolTipText("Abre la carpeta actual");
         
@@ -546,7 +546,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         
 		jBExtraer.setEnabled(true);
-		jBExtraer.setIcon(new javax.swing.ImageIcon("iconos/accept-32.png")); // NOI18N
+		// jBExtraer.setIcon(new javax.swing.ImageIcon("iconos/accept-32.png")); // NOI18N
 		jBExtraer.setText("Extraer");
 		jBExtraer
 				.setToolTipText("Obtiene la ruta y nombre del nuevo archivo, y lo coloca en el portapapeles");
@@ -574,7 +574,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton10.setText("Vacio");
         jButton10.setVisible(false);
 
-        jBFirmar.setIcon(new ImageIcon("iconos/drawing_pen 32.png"));
+      //  jBFirmar.setIcon(new ImageIcon("iconos/drawing_pen 32.png"));
         jBFirmar.setText("Firmar");
         jBFirmar.setEnabled(false);
         jBFirmar.setVisible(false);
@@ -670,7 +670,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBGrabar,100,100,100)
+                .addComponent(jBGrabar,130,130,130)
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(

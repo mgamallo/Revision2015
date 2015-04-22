@@ -404,8 +404,10 @@ public class Utiles {
 			String cmd2 = "taskkill.exe /F /IM FocoNHC.exe /T";
 			String cmd3 = "taskkill.exe /F /IM FocoAcrobat2.exe /T";
 			String cmd4 = "taskkill.exe /F /IM FocoAcrobatV.exe /T";
+			String cmd5 = "taskkill.exe /F /IM FocoAcrobat2015v7.exe /T";
 			
-			Process hijo, hijo2, hijo3, hijo4;
+			
+			Process hijo, hijo2, hijo3, hijo4,hijo5;
 			try {
 				hijo = Runtime.getRuntime().exec(cmd);
 
@@ -420,6 +422,9 @@ public class Utiles {
 				
 				hijo4 = Runtime.getRuntime().exec(cmd4);
 				hijo4.waitFor();
+				
+				hijo5 = Runtime.getRuntime().exec(cmd5);
+				hijo5.waitFor();
 
 				Thread.sleep(300);
 
@@ -710,7 +715,7 @@ public class Utiles {
 					}
 					
 					*/
-					Inicio.ventanaIntroducirNHC = new InterfazIntroducirNHC(null,false, Inicio.jBNHCp);
+					Inicio.ventanaIntroducirNHC = new InterfazIntroducirNHC(null,false, Inicio.jBNHC);
 					Inicio.ventanaIntroducirNHC.setVisible(true);
 
 					// dialog.requestFocus();
