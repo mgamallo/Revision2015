@@ -336,10 +336,10 @@ class Worker extends SwingWorker<Double, Integer>{
 	    		}
 		        
 		        System.out.println("El archivo existe?" + archivo2.exists());
-		        File archivo3 = new File(Inicio.rutaFocoNHC);
+		 //       File archivo3 = new File(Inicio.rutaFocoNHC);
 		        try {
 					 Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo2);
-					 Process pNHC = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo3);
+		//			 Process pNHC = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo3);
 		        	    		        	        	
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

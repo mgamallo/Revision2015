@@ -448,17 +448,20 @@ public class Utiles {
 				archivo2 = new File(Inicio.rutaFocoAcrobatV);
 			}
 			System.out.println("autohotkey..." + archivo2.getName());
-			File archivo3 = new File(Inicio.rutaFocoNHC);
+			
+			
+			// File archivo3 = new File(Inicio.rutaFocoNHC);
 			try {
 				Process p = Runtime.getRuntime().exec(
 						"rundll32 url.dll,FileProtocolHandler " + archivo2);
-				Process pNHC = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo3);
+			//	Process pNHC = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + archivo3);
 
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
+			
+			
 			Inicio.jBDeshabilitar.setText("Teclas On");
 			Inicio.jBDeshabilitar.setBackground(Color.pink);
 

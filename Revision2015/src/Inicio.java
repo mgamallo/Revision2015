@@ -34,7 +34,7 @@ public class Inicio extends JFrame {
 	static boolean acrobatAntiguo = false;
 	
 	static String rutaFocoAcrobat = "cal\\FocoAcrobat2015.exe";
-	static String rutaFocoNHC = "cal\\FocoNHC.exe";
+//	static String rutaFocoNHC = "cal\\FocoNHC.exe";
 	static String rutaFocoAcrobatV = "cal\\FocoAcrobatV.exe";
 	static String rutaFocoAcrobat2015v7 = "cal\\FocoAcrobat2015v7";
 
@@ -113,6 +113,8 @@ public class Inicio extends JFrame {
     static VentanaNombres ventanaNombres;
     static VentanaIntegral ventanaIntegral;
     static VentanaMicro ventanaMicro;
+    
+    static VentanaFechas ventanaFechas;
     
     static int visualizacion = 0;    	// 0 horizontal
     									// 1 vertical
@@ -193,7 +195,12 @@ public class Inicio extends JFrame {
 			rutaFocoAcrobat = "cal\\FocoAcrobat2.exe";
 			rutaFocoAcrobatV = "cal\\FocoAcrobatV2.exe";
 		}
-		else if(nombrePc.toLowerCase().contains("mahc35p")){
+		else if(  	nombrePc.toLowerCase().contains("mahc03p") ||
+					nombrePc.toLowerCase().contains("mahc35p") ||
+					nombrePc.toLowerCase().contains("mahc04p") ||
+					nombrePc.toLowerCase().contains("mahc21p") 
+				){
+			
 			rutaFocoAcrobat = rutaFocoAcrobat2015v7;
 		}
 		
@@ -205,6 +212,12 @@ public class Inicio extends JFrame {
 		// JOptionPane.showMessageDialog(null, "Empezamos a leer excel coordenadas");
 		System.out.println("Leemos coordenadas R.xls");
 		excel.getPreferencias("CoordenadasR.xls");
+		
+		
+		CapturaRatonYTeclado capturaBorrar = new CapturaRatonYTeclado();
+	    ventanaFechas = new VentanaFechas();
+	    ventanaFechas.setVisible(true);
+	    capturaBorrar.ventanaFechaOn_borrar = true;
 		
 		
 		
@@ -279,10 +292,11 @@ public class Inicio extends JFrame {
            	
         }
 	    
-	    
+	    System.out.println("Iniciando la captura del teclado.");
+	    new CapturaRatonYTeclado();
 		
 		
-		//new VentanaPrincipal();
+	    //new VentanaPrincipal();
 		//new VentanaCompacta();
 		
 	}

@@ -65,6 +65,8 @@ public class InterfazIntroducirNHC extends javax.swing.JDialog {
 
         jLNumero.setText("Introduce el NHC");
 
+        jTFnhc.setEditable(false);
+        jTFnhc.setFocusable(false);
         jTFnhc.setBackground(new java.awt.Color(254, 254, 195));
         jTFnhc.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTFnhc.addKeyListener(new KeyAdapter(){
@@ -111,26 +113,7 @@ public class InterfazIntroducirNHC extends javax.swing.JDialog {
         jBAceptar.addActionListener (new ActionListener(){
             public void actionPerformed (ActionEvent e)
             {
-            	validarNHC(jTFnhc.getText());
-            	
-            	Inicio.listaDocumentos[Inicio.numeroPdf].semaforoAmarilloNhc = false;
-            	Inicio.jBNHC.setBackground(Color.green);
-				Inicio.jBNHCp.setBackground(Color.green);
-				
-	     		new FocalAdobe(100);
-				if(Inicio.A3){
-					try {
-						Robot robot = new Robot();
-						robot.delay(50);
-						robot.keyPress(KeyEvent.VK_RIGHT);
-						robot.keyRelease(KeyEvent.VK_RIGHT);
-						robot.delay(50);
-					} catch (AWTException ev) {
-						// TODO Auto-generated catch block
-						ev.printStackTrace();
-					}
-				}
-            	dispose();
+            	aceptar();
             }
           });
              
@@ -305,6 +288,29 @@ public class InterfazIntroducirNHC extends javax.swing.JDialog {
         pack();
     }// </editor-fold>
 
+    
+    public void aceptar(){
+    	validarNHC(jTFnhc.getText());
+    	
+    	Inicio.listaDocumentos[Inicio.numeroPdf].semaforoAmarilloNhc = false;
+    	Inicio.jBNHC.setBackground(Color.green);
+		Inicio.jBNHCp.setBackground(Color.green);
+		
+ 		new FocalAdobe(100);
+		if(Inicio.A3){
+			try {
+				Robot robot = new Robot();
+				robot.delay(50);
+				robot.keyPress(KeyEvent.VK_RIGHT);
+				robot.keyRelease(KeyEvent.VK_RIGHT);
+				robot.delay(50);
+			} catch (AWTException ev) {
+				// TODO Auto-generated catch block
+				ev.printStackTrace();
+			}
+		}
+    	dispose();
+    }
     
 	public void validarNHC(String jTFnhc) {
 		// TODO Auto-generated method stub
