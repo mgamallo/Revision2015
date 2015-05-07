@@ -1,9 +1,14 @@
 import java.awt.Color;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 
 public class VentanaFechas extends javax.swing.JFrame {
 
-    /**
+    private JButton jBhoy0;
+	private JLabel jLhoy0;
+	/**
      * Creates new form VentanaFechas
      */
     public VentanaFechas() {
@@ -24,14 +29,16 @@ public class VentanaFechas extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLfechaRegistrada = new javax.swing.JLabel();
-        jBfijarFecha = new javax.swing.JButton();
+        jBEnter = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jBhoy3 = new javax.swing.JButton();
         jBhoy2 = new javax.swing.JButton();
         jBhoy1 = new javax.swing.JButton();
+        jBhoy0 = new javax.swing.JButton();
         jLhoy3 = new javax.swing.JLabel();
         jLhoy2 = new javax.swing.JLabel();
         jLhoy1 = new javax.swing.JLabel();
+        jLhoy0 = new javax.swing.JLabel();
         jBpersonal = new javax.swing.JButton();
         jLpersonal = new javax.swing.JLabel();
 
@@ -67,7 +74,7 @@ public class VentanaFechas extends javax.swing.JFrame {
         jLfechaRegistrada.setForeground(Color.RED);
         jLfechaRegistrada.setText("15/01/15");
 
-        jBfijarFecha.setText("Fijar Fecha");
+        jBEnter.setText("Aceptar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -79,7 +86,7 @@ public class VentanaFechas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLfechaRegistrada, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addGap(45, 45, 45)
-                .addComponent(jBfijarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
         jPanel3Layout.setVerticalGroup(
@@ -89,23 +96,41 @@ public class VentanaFechas extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLfechaRegistrada)
-                    .addComponent(jBfijarFecha))
+                    .addComponent(jBEnter))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 204));
 
         jBhoy3.setText("HOY -3");
+        jBhoy3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarFecha(evt);
+                
+            }
+        });
 
         jBhoy2.setText("HOY -2");
         jBhoy2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBhoy2ActionPerformed(evt);
+            	actualizarFecha(evt);
             }
         });
 
         jBhoy1.setText("AYER");
+        jBhoy1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	actualizarFecha(evt);
+            }
+        });
 
+        jBhoy0.setText("HOY");
+        jBhoy0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	actualizarFecha(evt);
+            }
+        });
+        
         jLhoy3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLhoy3.setText("10/01/15");
 
@@ -114,8 +139,16 @@ public class VentanaFechas extends javax.swing.JFrame {
 
         jLhoy1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLhoy1.setText("08/01/15");
+        
+        jLhoy0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLhoy0.setText("08/01/15");
 
         jBpersonal.setText("Personal");
+        jBpersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	actualizarFecha(evt);
+            }
+        });
 
         jLpersonal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLpersonal.setText("08/01/15");
@@ -129,14 +162,18 @@ public class VentanaFechas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBhoy3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLhoy3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBhoy2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLhoy2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBhoy1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLhoy1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBhoy0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLhoy0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBpersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,19 +186,19 @@ public class VentanaFechas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLpersonal))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBhoy3)
                             .addComponent(jBhoy2)
                             .addComponent(jBhoy1)
+                            .addComponent(jBhoy0)
                             .addComponent(jBpersonal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLhoy3)
                             .addComponent(jLhoy2)
-                            .addComponent(jLhoy1))))
+                            .addComponent(jLhoy1)
+                            .addComponent(jLhoy0)
+                            .addComponent(jLpersonal))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -199,20 +236,68 @@ public class VentanaFechas extends javax.swing.JFrame {
 
         pack();
         
-        logica();
+        reseteaColorBotones();
+        actualizarFechas();
         
     }// </editor-fold>                        
 
-    private void jBhoy2ActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-    }                                      
-
-    
-    private void logica(){
+    private void actualizarFechas(){
     	
         Fechas fechas = new Fechas();
         jLfechaRegistrada.setText(fechas.fechaHoy);
+    	
+    	jLhoy0.setText(fechas.fechaHoy);
+    	jBhoy0.setBackground(Color.green);
+    	jLhoy1.setText(fechas.fechaAyer);
+    	jLhoy2.setText(fechas.fechaAnteayer);
+    	jLhoy3.setText(fechas.fechaAnteAnteayer);
+    	jLpersonal.setText(fechas.fechaHoy);
     }
+    
+    private void actualizarFecha(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+    	if(evt.getSource() == jBhoy0){
+    		jLfechaRegistrada.setText(jLhoy0.getText());
+    		reseteaColorBotones();
+    		jBhoy0.setBackground(Color.green);
+    	}
+    	
+    	if(evt.getSource() == jBhoy1){
+    		jLfechaRegistrada.setText(jLhoy1.getText());
+    		reseteaColorBotones();
+    		jBhoy1.setBackground(Color.green);
+    	}
+    	
+    	if(evt.getSource() == jBhoy2){
+    		jLfechaRegistrada.setText(jLhoy2.getText());
+    		reseteaColorBotones();
+    		jBhoy2.setBackground(Color.green);
+    	}
+    	
+    	if(evt.getSource() == jBhoy3){
+    		jLfechaRegistrada.setText(jLhoy3.getText());
+    		reseteaColorBotones();
+    		jBhoy3.setBackground(Color.green);
+    	}
+    	
+    	if(evt.getSource() == jBpersonal){
+    		
+    		System.out.println("Clicando boton personal");
+    		
+    		jLpersonal.setText(jLfechaRegistrada.getText());
+    		reseteaColorBotones();
+    		jBpersonal.setBackground(Color.green);
+    	}
+    }                                      
+
+    private void reseteaColorBotones(){
+    	jBhoy0.setBackground(Color.lightGray);
+    	jBhoy1.setBackground(Color.lightGray);
+    	jBhoy2.setBackground(Color.lightGray);
+    	jBhoy3.setBackground(Color.lightGray);
+    	jBpersonal.setBackground(Color.lightGray);
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -251,7 +336,7 @@ public class VentanaFechas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jBfijarFecha;
+    private javax.swing.JButton jBEnter;
     private javax.swing.JButton jBhoy1;
     private javax.swing.JButton jBhoy2;
     private javax.swing.JButton jBhoy3;

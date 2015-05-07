@@ -13,6 +13,9 @@ public class Fechas {
 	int añoPosible;
 	
 	String fechaHoy = "";
+	String fechaAyer = "";
+	String fechaAnteayer = "";
+	String fechaAnteAnteayer = "";
 	
 	public Fechas() {
 		// TODO Auto-generated constructor stub
@@ -23,8 +26,25 @@ public class Fechas {
 		año = calendario.get(Calendar.YEAR);
 		
 		fechaHoy = get2digitos(dia) + " / " + get2digitos(mes) + " / " + año;
+		
+		fechaAyer = devuelveFechasAnteriores(1);
+		fechaAnteayer = devuelveFechasAnteriores(2);
+		fechaAnteAnteayer = devuelveFechasAnteriores(3);
 	}
 
+	private String devuelveFechasAnteriores(int diasAtras){
+		
+		String fecha = "";
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -diasAtras);
+		
+		int dia = cal.get(Calendar.DAY_OF_MONTH);
+		int mes = cal.get(Calendar.MONTH) + 1;
+		int año = cal.get(Calendar.YEAR);
+		
+		return  get2digitos(dia) + " / " + get2digitos(mes) + " / " + año;
+	}
 	
 	public String adivinaFecha(String texto){
 		String fecha;

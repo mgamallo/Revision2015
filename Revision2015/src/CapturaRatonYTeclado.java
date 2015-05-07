@@ -175,7 +175,10 @@ public class CapturaRatonYTeclado implements NativeKeyListener,
 			 
 			 if( (codigo == 8)){   // Borrar en retroceso
 				 int tamaño = cadena.length();
-				 cadena = cadena.substring(0,tamaño-1);
+				 if(tamaño > 0){
+					 cadena = cadena.substring(0,tamaño-1);
+				 }
+
 				 Inicio.ventanaFechas.jTextField1.setText(cadena);
 				 Fechas fechas = new Fechas();
 				 
