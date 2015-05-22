@@ -17,6 +17,10 @@ public class Fechas {
 	String fechaAnteayer = "";
 	String fechaAnteAnteayer = "";
 	
+	String diaAyer = "";
+	String diaAnteayer = "";
+	String diaAnteAnteayer = "";
+	
 	public Fechas() {
 		// TODO Auto-generated constructor stub
 		
@@ -27,23 +31,78 @@ public class Fechas {
 		
 		fechaHoy = get2digitos(dia) + " / " + get2digitos(mes) + " / " + año;
 		
-		fechaAyer = devuelveFechasAnteriores(1);
-		fechaAnteayer = devuelveFechasAnteriores(2);
-		fechaAnteAnteayer = devuelveFechasAnteriores(3);
+		devuelveFechasAnteriores();
+		
 	}
-
-	private String devuelveFechasAnteriores(int diasAtras){
-		
-		String fecha = "";
-		
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DAY_OF_MONTH, -diasAtras);
+	
+	private String devuelveCadenaFecha(Calendar cal){
 		
 		int dia = cal.get(Calendar.DAY_OF_MONTH);
 		int mes = cal.get(Calendar.MONTH) + 1;
 		int año = cal.get(Calendar.YEAR);
-		
+				
 		return  get2digitos(dia) + " / " + get2digitos(mes) + " / " + año;
+	}
+
+	private void devuelveFechasAnteriores(){
+		
+		String fecha = "";
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, - 1);
+		
+		System.out.println("Dia del mes... " + cal.get(Calendar.DAY_OF_MONTH));
+		System.out.println("Empieza adivinar dia semana... " + cal.get(Calendar.DAY_OF_WEEK));
+		
+		while(cal.get(Calendar.DAY_OF_WEEK) == 1 || cal.get(Calendar.DAY_OF_WEEK) == 7){
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+			System.out.println("El día anterior es... " + cal.get(Calendar.DAY_OF_MONTH) + ". " + cal.get(Calendar.DAY_OF_WEEK));
+		}
+		
+		fechaAyer = devuelveCadenaFecha(cal);
+		diaAyer = getDiaSemana(cal.get(Calendar.DAY_OF_WEEK));
+		
+		cal.add(Calendar.DAY_OF_MONTH, - 1);
+		
+		System.out.println("Dia del mes... " + cal.get(Calendar.DAY_OF_MONTH));
+		System.out.println("Empieza adivinar dia semana... " + cal.get(Calendar.DAY_OF_WEEK));
+		
+		while(cal.get(Calendar.DAY_OF_WEEK) == 1 || cal.get(Calendar.DAY_OF_WEEK) == 7){
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+			System.out.println("El día anterior es... " + cal.get(Calendar.DAY_OF_MONTH) + ". " + cal.get(Calendar.DAY_OF_WEEK));
+		}
+		
+		System.out.println();
+		fechaAnteayer = devuelveCadenaFecha(cal);
+		diaAnteayer = getDiaSemana(cal.get(Calendar.DAY_OF_WEEK));
+		
+		cal.add(Calendar.DAY_OF_MONTH, - 1);
+		
+		System.out.println("Dia del mes... " + cal.get(Calendar.DAY_OF_MONTH));
+		System.out.println("Empieza adivinar dia semana... " + cal.get(Calendar.DAY_OF_WEEK));
+		
+		while(cal.get(Calendar.DAY_OF_WEEK) == 1 || cal.get(Calendar.DAY_OF_WEEK) == 7){
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+			System.out.println("El día anterior es... " + cal.get(Calendar.DAY_OF_MONTH) + ". " + cal.get(Calendar.DAY_OF_WEEK));
+		}
+		
+		System.out.println();
+		fechaAnteAnteayer = devuelveCadenaFecha(cal);
+		diaAnteAnteayer = getDiaSemana(cal.get(Calendar.DAY_OF_WEEK));
+
+	}
+	
+	
+	private String encuentraDiasHabiles(int index){
+		Calendar cal = Calendar.getInstance();
+
+		cal.add(Calendar.DAY_OF_MONTH, -index);
+		
+		while(cal.get(Calendar.DAY_OF_WEEK) == 1 || cal.get(Calendar.DAY_OF_WEEK) == 7){
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+		}
+		
+		return getDiaSemana(cal.get(Calendar.DAY_OF_WEEK));
 	}
 	
 	public String adivinaFecha(String texto){
@@ -161,6 +220,42 @@ public class Fechas {
 		else{
 			cadena = "" + numero;
 		}
+		
+		return cadena;
+	}
+	
+	
+	private String getDiaSemana(int d){
+		
+		String cadena = "";
+		switch (d) {
+		case 1:
+			cadena = "Domingo";
+			break;
+		case 2:
+			cadena = "Lunes";
+			break;
+		case 3:
+			cadena = "Martes";
+			break;
+		case 4:
+			cadena = "Miércoles";
+			break;
+		case 5:
+			cadena = "Jueves";
+			break;
+		case 6:
+			cadena = "Viernes";
+			break;
+		case 7:
+			cadena = "Sábado";
+			break;
+
+		default:
+			break;
+		}
+		
+		System.out.println("El dia es " + cadena);
 		
 		return cadena;
 	}

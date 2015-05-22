@@ -79,6 +79,7 @@ public class Inicio extends JFrame {
 	
 	static JButton jBNHC = new javax.swing.JButton();
     static JButton jBServicio = new javax.swing.JButton();
+    static JLabel jLServicio = new JLabel(); 
     static JButton jBNombreDoc = new javax.swing.JButton();
     static JButton jBServiciop = new javax.swing.JButton();
     static JButton jBNombreDocp = new javax.swing.JButton();
@@ -115,6 +116,7 @@ public class Inicio extends JFrame {
     static VentanaMicro ventanaMicro;
     
     static VentanaFechas ventanaFechas;
+    static boolean esperarFecha = false;
     
     static int visualizacion = 0;    	// 0 horizontal
     									// 1 vertical
@@ -210,15 +212,11 @@ public class Inicio extends JFrame {
 		System.out.println("Leemos documentos.xls");
 		excel.getTablaDocumentos("Documentos.xls");
 		// JOptionPane.showMessageDialog(null, "Empezamos a leer excel coordenadas");
-		System.out.println("Leemos coordenadas R.xls");
+		//System.out.println("Leemos coordenadas R.xls");
 		excel.getPreferencias("CoordenadasR.xls");
 		
 		
-		CapturaRatonYTeclado capturaBorrar = new CapturaRatonYTeclado();
-	    ventanaFechas = new VentanaFechas();
-	    ventanaFechas.setVisible(true);
-	    capturaBorrar.ventanaFechaOn_borrar = true;
-		
+//		CapturaRatonYTeclado capturaBorrar = new CapturaRatonYTeclado();
 		
 		
 		if(!rebotado){
@@ -296,8 +294,8 @@ public class Inicio extends JFrame {
 	    new CapturaRatonYTeclado();
 		
 		
-	    //new VentanaPrincipal();
-		//new VentanaCompacta();
+	  //  new VentanaPrincipal();
+	  //  new VentanaCompacta();
 		
 	}
 

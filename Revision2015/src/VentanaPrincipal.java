@@ -29,6 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 	private JLabel jLDocumentosComunes;
 	private JLabel jLDocumentosServicio;
 	private JButton jBExtraer;
+	public JButton jBFechas;
 	/**
      * Creates new form VentanaPrincipal
      */
@@ -54,7 +55,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 		Inicio.jBDeshabilitar = new javax.swing.JButton();
         
         jLNHC = new javax.swing.JLabel();
-        jLServicio = new javax.swing.JLabel();
         jLNombreDoc = new javax.swing.JLabel();
         jPanelBotonesAuxiliares = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -90,6 +90,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLDocumentosServicio = new JLabel();
         
         jBExtraer = new javax.swing.JButton();
+        jBFechas = new JButton("F");
 
         setTitle("Panel Principal");
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -164,9 +165,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLNHC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLNHC.setText("Selecc. Separador");
 
-        jLServicio.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jLServicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLServicio.setText("Fijar Servicio");
+        Inicio.jLServicio.setFont(new java.awt.	Font("Tahoma", 1, 18)); // NOI18N
+        Inicio.jLServicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Inicio.jLServicio.setForeground(Color.red);
+        Inicio.jLServicio.setText("Sin fecha");
 
         jLNombreDoc.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jLNombreDoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,7 +193,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelNorteBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Inicio.jBServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Inicio.jLServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelNorteBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Inicio.jBNombreDoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,7 +205,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelNorteBotonesLayout.createSequentialGroup()
                 .addGroup(jPanelNorteBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNHC)
-                    .addComponent(jLServicio)
+                    .addComponent(Inicio.jLServicio)
                     .addComponent(jLNombreDoc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelNorteBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -566,7 +568,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 			}
 		});
         
-        
+		jBFechas.setBackground(Color.gray);
+		jBFechas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				Boolean visible = Inicio.ventanaFechas.isVisible();
+				if(visible){
+					jBFechas.setBackground(Color.gray);
+				}
+				else{
+					jBFechas.setBackground(Color.green);
+				}
+				
+				Inicio.ventanaFechas.setVisible(!visible);
+
+			}
+		});
         
         jButton9.setText("Vacio");
         jButton9.setVisible(false);
@@ -619,7 +639,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jBEliminar,90,90,90)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBApartar,90,90,90)
-                .addGap(80, 80, 80)
+                .addGap(30, 30, 30)
+                .addComponent(jBFechas,40,40,40)
+                .addGap(30, 30, 30)
                 .addComponent(jBCarpeta,90,90,90)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(jBExtraer,90,90,90)
@@ -640,8 +662,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 	.addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBApartar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBFechas,29,29,29)
                     .addComponent(jBExtraer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                   
                     .addComponent(jButton9)
                     .addComponent(jButton10)
                     .addComponent(jBFirmar)
@@ -796,7 +818,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLNHC;
     // private javax.swing.JList jLNombresDoc;
     // private javax.swing.JList jLServicios;
-    private javax.swing.JLabel jLServicio;
+
     private javax.swing.JLabel jLNombreDoc;
     private javax.swing.JList jListHabituales1;
     private javax.swing.JList jListHabituales2;

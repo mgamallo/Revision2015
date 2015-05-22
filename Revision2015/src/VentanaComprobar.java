@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -86,7 +87,10 @@ public class VentanaComprobar extends JDialog {
 	
 	boolean compruebaTamañoPdf(int indice){
 		
-		if(Inicio.listaDocumentos[indice].fisica.peso > 11900){
+		File ficheroRevisado = new File(Inicio.listaDocumentos[indice].rutaArchivo);
+		int tamaño = (int) (ficheroRevisado.length()/1024);
+		
+		if(tamaño > 11900){
 			return false;
 		}
 		return true;
@@ -94,8 +98,17 @@ public class VentanaComprobar extends JDialog {
 	
 	boolean compruebaTamañoPdfXedoc(int indice){
 		
-		if(Inicio.listaDocumentos[indice].fisica.peso > 4000){
-			return false;
+		if(Inicio.excel.documentosXedoc.containsKey(Inicio.listaDocumentos[indice].nombreNormalizado)){
+			String tipoSubidaXedoc = Inicio.excel.documentosXedoc.get(Inicio.listaDocumentos[indice].nombreNormalizado);
+			if(tipoSubidaXedoc.toLowerCase().equals("x") || tipoSubidaXedoc.toLowerCase().equals("c")){
+				
+				File ficheroRevisado = new File(Inicio.listaDocumentos[indice].rutaArchivo);
+				int tamaño = (int) (ficheroRevisado.length()/1024);
+				
+				if(tamaño > 4000){
+					return false;
+				}
+			}
 		}
 		
 		return true;
@@ -123,6 +136,7 @@ public class VentanaComprobar extends JDialog {
 	
 	
 	boolean compruebaServicio(int indice){
+		
 		
 		if(Inicio.listaDocumentos[indice].servicio.equals("X") ){
 			return false;

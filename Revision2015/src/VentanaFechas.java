@@ -1,11 +1,22 @@
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.MouseInfo;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 
-public class VentanaFechas extends javax.swing.JFrame {
+public class VentanaFechas extends javax.swing.JDialog {
 
+	private java.awt.Point coordenadasRaton = new java.awt.Point();
+	
     private JButton jBhoy0;
 	private JLabel jLhoy0;
 	/**
@@ -42,8 +53,10 @@ public class VentanaFechas extends javax.swing.JFrame {
         jBpersonal = new javax.swing.JButton();
         jLpersonal = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+      //  setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 102));
+        
         jPanel2.setBackground(new java.awt.Color(255, 255, 102));
         jPanel2.setMaximumSize(new java.awt.Dimension(20, 200));
         jPanel2.setMinimumSize(new java.awt.Dimension(20, 100));
@@ -63,18 +76,39 @@ public class VentanaFechas extends javax.swing.JFrame {
 
        // jPanel3.setBackground(new java.awt.Color(102, 0, 0));
 
-        jPanel3.setBackground(Color.white);
+        jPanel3.setBackground(new Color(255,229,204));
         
         jTextField1.setText("");
         jTextField1.setSize(0,6);
         jTextField1.setEditable(false);
         jTextField1.setFocusable(false);
-
+        jTextField1.setFont(new java.awt.Font("Times", 1, 22)); // NOI18N
+        
         jLfechaRegistrada.setFont(new java.awt.Font("Times", 1, 58)); // NOI18N
-        jLfechaRegistrada.setForeground(Color.RED);
-        jLfechaRegistrada.setText("15/01/15");
+        jLfechaRegistrada.setForeground(Color.BLACK);
+        jLfechaRegistrada.setText("");
 
         jBEnter.setText("Aceptar");
+               
+        jTextField1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("Tecleando");
+			}
+		});
+        
+        jBEnter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				Inicio.utiles.registraFecha();
+				setVisible(false);
+			}
+		});
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -86,19 +120,20 @@ public class VentanaFechas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLfechaRegistrada, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addGap(45, 45, 45)
-                .addComponent(jBEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+             //   .addComponent(jBEnter, 50, 50, 50)
                 .addGap(19, 19, 19))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+  //              .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLfechaRegistrada)
-                    .addComponent(jBEnter))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+             //       .addComponent(jBEnter,50,50,50)
+                    )
+  //              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        ));
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -178,7 +213,11 @@ public class VentanaFechas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBpersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLpersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(203, 203, 203))
+                .addGap(20, 20, 20)
+                .addComponent(jBEnter,100,100,100)
+                .addGap(20, 20, 20))
+            
+                
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +238,10 @@ public class VentanaFechas extends javax.swing.JFrame {
                             .addComponent(jLhoy1)
                             .addComponent(jLhoy0)
                             .addComponent(jLpersonal))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+              //  .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                           
+            		)
+            		.addComponent(jBEnter,55,55,55)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -219,7 +261,7 @@ public class VentanaFechas extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+  //              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -234,10 +276,68 @@ public class VentanaFechas extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        
+		jPanel2.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getComponent() == jPanel2){
+					coordenadasRaton = e.getPoint();
+					System.out.println("Pinche en el panel");
+				}
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		jPanel2.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+				java.awt.Point punto = MouseInfo.getPointerInfo().getLocation();
+				setLocation(punto.x - coordenadasRaton.x, punto.y
+						- coordenadasRaton.y);
+			}
+		});
+        
+        setUndecorated(true);
         pack();
+        
+        setSize(new Dimension(660,150));
         
         reseteaColorBotones();
         actualizarFechas();
+     //   setModal(false);
         
     }// </editor-fold>                        
 
@@ -248,8 +348,14 @@ public class VentanaFechas extends javax.swing.JFrame {
     	
     	jLhoy0.setText(fechas.fechaHoy);
     	jBhoy0.setBackground(Color.green);
+    	
+    	jBhoy1.setText(fechas.diaAyer);
     	jLhoy1.setText(fechas.fechaAyer);
+    	
+    	jBhoy2.setText(fechas.diaAnteayer);
     	jLhoy2.setText(fechas.fechaAnteayer);
+    	
+    	jBhoy3.setText(fechas.diaAnteAnteayer);
     	jLhoy3.setText(fechas.fechaAnteAnteayer);
     	jLpersonal.setText(fechas.fechaHoy);
     }
@@ -290,6 +396,33 @@ public class VentanaFechas extends javax.swing.JFrame {
     	}
     }                                      
 
+    public String getFechaActiva(){
+    	String fecha = "";
+    	if(jBpersonal.getBackground() == Color.green){
+    		System.out.println("Color seleccionado... personal" + jBpersonal.getBackground());
+    		fecha = jLpersonal.getText();
+    	}
+    	else if(jBhoy1.getBackground() == Color.green){
+    		System.out.println("Color seleccionado... hoy1" + jBpersonal.getBackground().toString());
+    		fecha = jLhoy1.getText();
+    	}
+    	else if(jBhoy2.getBackground() == Color.green){
+    		System.out.println("Color seleccionado... hoy2" + jBpersonal.getBackground().toString());
+    		fecha = jLhoy2.getText();
+    	}
+    	else if(jBhoy3.getBackground() == Color.green){
+    		System.out.println("Color seleccionado... hoy3" + jBpersonal.getBackground().toString());
+    		fecha = jLhoy3.getText();
+    	}
+    	else {
+    		System.out.println("Color seleccionado... hoy" + jBpersonal.getBackground().toString());
+    		fecha = jLhoy0.getText();
+    	}
+    	System.out.println(fecha);
+    	
+    	return fecha;
+    }
+    
     private void reseteaColorBotones(){
     	jBhoy0.setBackground(Color.lightGray);
     	jBhoy1.setBackground(Color.lightGray);

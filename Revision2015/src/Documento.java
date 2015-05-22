@@ -26,6 +26,7 @@ public class Documento {
 	String nhc ="X";												// ok
 	String servicio ="X";
 	String nombreNormalizado = "X";
+	String fecha = "";
 	
 	String cadenaOCR = "";										// ok
 	
@@ -261,15 +262,38 @@ public class Documento {
 	
 	String registraFichero(){
 		
+		String fechaSinBarras = devuelveCadenaFechaServicio();
+		System.out.println("Fecha sin barras: " + fechaSinBarras);
+		
 		int aux = this.rutaArchivo.indexOf("@");
 		String auxS = this.rutaArchivo.substring(0,aux + 1);
-		String nuevaS = this.nhc + " @" + this.servicio + " @" + this.nombreNormalizado + " r.pdf";
+		String nuevaS = this.nhc + " @" + fechaSinBarras + " @" + this.nombreNormalizado + " r.pdf";
 		nuevaS = auxS + nuevaS;
 		System.out.println(nuevaS);
 		
 		this.rutaArchivo = nuevaS;
 		
 		return nuevaS;
+	}
+	
+	private String devuelveCadenaFechaServicio(){
+		
+		String cadena = this.servicio;
+		
+		if(!this.fecha.equals("")){
+			
+			System.out.println(this.fecha);
+			
+			String fechaSinEspacios = this.fecha.replaceAll(" ", "");
+			
+			String fechaSinBarras[] = fechaSinEspacios.split("/");
+			if(fechaSinBarras.length == 3)
+				cadena += " " + fechaSinBarras[0] + fechaSinBarras[1] + fechaSinBarras[2];
+			
+			System.out.println(cadena);
+		}
+		
+		return cadena;
 	}
 	
 	String apartaFichero(){

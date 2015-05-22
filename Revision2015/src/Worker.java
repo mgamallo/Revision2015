@@ -12,6 +12,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
+import com.itextpdf.awt.geom.Rectangle;
+
 
 class Worker extends SwingWorker<Double, Integer>{
 
@@ -297,6 +299,12 @@ class Worker extends SwingWorker<Double, Integer>{
 		        Inicio.ventanaMicro = new VentanaMicro();
     	        Inicio.ventanaMicro.setBounds(Inicio.coordenadas.coordenadas[5].x, Inicio.coordenadas.coordenadas[5].y, 730, 60);
     	        
+    		    Inicio.ventanaFechas = new VentanaFechas();
+    		    Inicio.ventanaFechas.setVisible(false);
+    		    java.awt.Rectangle rect  = Inicio.ventanaFechas.getBounds();
+    		    
+		        Inicio.ventanaFechas.setBounds(Inicio.coordenadas.coordenadas[3].x, Inicio.coordenadas.coordenadas[3].y + 1000, rect.width, rect.height);
+
     	        
 		        System.out.println("Visualización vale..." + visualizacion);
 		        

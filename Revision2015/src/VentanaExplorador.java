@@ -986,6 +986,22 @@ public class VentanaExplorador extends javax.swing.JFrame {
 	    	           //dialog.requestFocus();
 	    	           // jPanel1.requestFocus();
     			   }
+    			   
+    			   //	Actualiza la fecha del pdf
+ 
+    			   String fecha = Inicio.listaDocumentos[Inicio.numeroPdf].fecha;
+    			   System.out.println("Fecha registrada... " + fecha);
+    			   
+    			   
+    			   if(!fecha.equals("")){
+    				   Inicio.ventanaFechas.jLfechaRegistrada.setText(fecha);
+    				   Inicio.jLServicio.setText(fecha);
+
+    			   }
+    			   else{
+    				   Inicio.ventanaFechas.jLfechaRegistrada.setText(Inicio.ventanaFechas.getFechaActiva());
+    				   Inicio.jLServicio.setText("Sin fecha");
+    			   }
     		   
        //			Desktop.getDesktop().open(archivo);
         			Robot robot = new Robot();

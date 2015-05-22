@@ -2,7 +2,9 @@ import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.TreeMap;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -28,6 +30,8 @@ public class LeerExcel {
     DefaultListModel listaHabitualesUrg;
     
     DefaultListModel vinculacionServicio;
+    
+    public TreeMap<String, String> documentosXedoc = new TreeMap<String, String>();
     
     int numServicios = 0;
     int numDocumentos = 0;
@@ -102,6 +106,7 @@ public class LeerExcel {
                     tablaVisor[fila][columna] = hoja.getCell(columna, fila).getContents();
                     }
             }
+            
             
             archivoExcel.close();
 			
@@ -258,6 +263,25 @@ public class LeerExcel {
 	        	habitualesUrg[i] = listaHabitualesUrg.getElementAt(i).toString();
 	        }
 
+	        
+	        int col = numServicios + 2 + 1;
+	       
+	        //	leer documentos que van a ir a Xedoc
+	        
+	        for(int fila=0;fila<numFilas-1;fila++){
+	        	documentosXedoc.put(hoja.getCell(0,fila+1).getContents().toString(),
+	        			hoja.getCell(col,fila+1).getContents().toString());
+	        }
+	        
+	        /*
+	        System.out.println("Documentos Xedoc");
+	        for( Iterator it = documentosXedoc.keySet().iterator(); it.hasNext();) {
+	        	String clave = (String)it.next();
+	        	String valor = (String)documentosXedoc.get(clave);
+	        	System.out.println(clave + " : " + valor);
+	        }
+	        */
+	        
 	        /*
 	        for(int i=0;i<habituales2.length;i++){
 	        	System.out.println(habituales2[i]);

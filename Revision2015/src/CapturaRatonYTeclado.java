@@ -54,7 +54,7 @@ public class CapturaRatonYTeclado implements NativeKeyListener,
 		 */
 	}
 
-	// MÈtodos de ratÛn
+	// M√©todos de rat√≥n
 	// **********************************************************
 
 	@Override
@@ -90,108 +90,119 @@ public class CapturaRatonYTeclado implements NativeKeyListener,
 		// System.out.println("mousemoved");
 	}
 
-	// MÈtodos de teclado
+	// M√©todos de teclado
 	// *************************************************************
 
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		// TODO Auto-generated method stub
-		 System.out.println("NativeKeyPressed " + e.getKeyCode());
-		 System.out.println("Tecla ... " + ((char) e.getKeyCode()));
-		
-		if(Inicio.ventanaIntroducirNHC != null){
-			 if(Inicio.ventanaIntroducirNHC.isVisible()){
-				 
-				 int codigo = e.getKeyCode();
-				 
-				 /*  0 ... 48  ...  96
-				  	 1 ... 49  ...  97
-				  	 9 ... 57  ... 105
-				  */
-				 
-				 String cadena = Inicio.ventanaIntroducirNHC.jTFnhc.getText();
-				 
-				 if(	(codigo >= 48 && codigo <= 57) ||
-						(codigo >= 96 && codigo <= 105)   ){
-					 System.out.println("Es un n˙mero");
-					 
-					 if(codigo >= 96){
-						 codigo = codigo - 48;
-					 }
-					 
-					 
-					 cadena += ((char) codigo);
-					 System.out.println(cadena);
-					 Inicio.ventanaIntroducirNHC.jTFnhc.setText(cadena);
-					// Inicio.ventanaIntroducirNHC.jTFnhc.requestFocusInWindow();
-				 }
-				 
-				 if( (codigo == 8)){   // Borrar en retroceso
-					 int tamaÒo = cadena.length();
-					 cadena = cadena.substring(0,tamaÒo-1);
-					 Inicio.ventanaIntroducirNHC.jTFnhc.setText(cadena);
-				 }
-				 
-				 if( (codigo == 10)){  // Enter
-					 Inicio.ventanaIntroducirNHC.aceptar();
-				 }
-			 }
-		}
-		
-		
-		if(ventanaFechaOn_borrar){
-			 int codigo = e.getKeyCode();
-			 
-			 /*  0 ... 48  ...  96
-			  	 1 ... 49  ...  97
-			  	 9 ... 57  ... 105
-			  */
-			 
-			 String fechaInicial = Inicio.ventanaFechas.jLfechaRegistrada.getText();
-			 String cadena = Inicio.ventanaFechas.jTextField1.getText();
-			 
-			 if(	(codigo >= 48 && codigo <= 57) ||
-					(codigo >= 96 && codigo <= 105)   ){
-				 System.out.println("Es un n˙mero");
-				 
-				 if(codigo >= 96){
-					 codigo = codigo - 48;
-				 }
-				 
-				 
-				 cadena += ((char) codigo);
-				 System.out.println(cadena);
-				 Inicio.ventanaFechas.jTextField1.setText(cadena);
-				 Fechas fechas = new Fechas();
-				 
-				 String fech = fechas.adivinaFecha(cadena);
-				 if(fech != null){
-					 fechaInicial = fech;
-				 }
-				 
-				 Inicio.ventanaFechas.jLfechaRegistrada.setText(fechaInicial);
-				// Inicio.ventanaIntroducirNHC.jTFnhc.requestFocusInWindow();
-			 }
-			 
-			 if( (codigo == 8)){   // Borrar en retroceso
-				 int tamaÒo = cadena.length();
-				 if(tamaÒo > 0){
-					 cadena = cadena.substring(0,tamaÒo-1);
-				 }
+		System.out.println("NativeKeyPressed " + e.getKeyCode());
+		System.out.println("Tecla ... " + ((char) e.getKeyCode()));
 
-				 Inicio.ventanaFechas.jTextField1.setText(cadena);
-				 Fechas fechas = new Fechas();
-				 
-				 String fech = fechas.adivinaFecha(cadena);
-				 if(fech != null){
-					 fechaInicial = fech;
-				 }
-				 Inicio.ventanaFechas.jLfechaRegistrada.setText(fechaInicial);
-			 }
-			 
-			 if( (codigo == 10)){  // Enter
-				
-			 }
+		if (Inicio.ventanaIntroducirNHC != null) {
+
+			System.out.println();
+			System.out.println();
+			System.out.println("VentanaIntroducirNHC no es null");
+			System.out.println("ventana introducirNHC visible ... "
+					+ Inicio.ventanaIntroducirNHC.isVisible());
+			System.out.println("ventana fechas visible ... "
+					+ Inicio.ventanaFechas.isVisible());
+
+			if (Inicio.ventanaIntroducirNHC.isVisible()) {
+				System.out.println("VentanaIntroducirNHC es visible");
+				int codigo = e.getKeyCode();
+
+				/*
+				 * 0 ... 48 ... 96 1 ... 49 ... 97 9 ... 57 ... 105
+				 */
+
+				String cadena = Inicio.ventanaIntroducirNHC.jTFnhc.getText();
+
+				if ((codigo >= 48 && codigo <= 57)
+						|| (codigo >= 96 && codigo <= 105)) {
+					System.out.println("Es un n√∫mero");
+					if (codigo >= 96) {
+						codigo = codigo - 48;
+					}
+
+					cadena += ((char) codigo);
+					System.out.println(cadena);
+					Inicio.ventanaIntroducirNHC.jTFnhc.setText(cadena);
+					// Inicio.ventanaIntroducirNHC.jTFnhc.requestFocusInWindow();
+				}
+
+				if ((codigo == 8)) { // Borrar en retroceso
+					int tama√±o = cadena.length();
+					cadena = cadena.substring(0, tama√±o - 1);
+					Inicio.ventanaIntroducirNHC.jTFnhc.setText(cadena);
+				}
+
+				if ((codigo == 10)) { // Enter
+					Inicio.ventanaIntroducirNHC.aceptar();
+				}
+			}
+		}
+
+		if ( Inicio.ventanaFechas != null && Inicio.ventanaFechas.isVisible()) {
+
+			System.out.println("VEntanaFechas es visible");
+
+			int codigo = e.getKeyCode();
+
+			/*
+			 * 0 ... 48 ... 96 1 ... 49 ... 97 9 ... 57 ... 105
+			 */
+
+			String fechaInicial = Inicio.ventanaFechas.jLfechaRegistrada
+					.getText();
+			String cadena = Inicio.ventanaFechas.jTextField1.getText();
+
+			System.out.println("El c√≥digo es: " + codigo);
+			System.out.println("La fecha registrada es: " + fechaInicial);
+			System.out.println("El contenido del jtextfield1 es: " + cadena);
+
+			if ((codigo >= 48 && codigo <= 57)
+					|| (codigo >= 96 && codigo <= 105)) {
+				System.out.println("Es un n√∫mero");
+
+				if (codigo >= 96) {
+					codigo = codigo - 48;
+				}
+
+				cadena += ((char) codigo);
+				System.out.println(cadena);
+				Inicio.ventanaFechas.jTextField1.setText(cadena);
+				Fechas fechas = new Fechas();
+
+				String fech = fechas.adivinaFecha(cadena);
+				if (fech != null) {
+					fechaInicial = fech;
+				}
+
+				Inicio.ventanaFechas.jLfechaRegistrada.setText(fechaInicial);
+				// Inicio.ventanaIntroducirNHC.jTFnhc.requestFocusInWindow();
+			}
+
+			if ((codigo == 8)) { // Borrar en retroceso
+				int tama√±o = cadena.length();
+				if (tama√±o > 0) {
+					cadena = cadena.substring(0, tama√±o - 1);
+				}
+
+				Inicio.ventanaFechas.jTextField1.setText(cadena);
+				Fechas fechas = new Fechas();
+
+				String fech = fechas.adivinaFecha(cadena);
+				if (fech != null) {
+					fechaInicial = fech;
+				}
+				Inicio.ventanaFechas.jLfechaRegistrada.setText(fechaInicial);
+			}
+
+			if ((codigo == 10)) { // Enter
+				Inicio.utiles.registraFecha();
+			}
 		}
 
 	}
