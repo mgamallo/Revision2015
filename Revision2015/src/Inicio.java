@@ -192,19 +192,32 @@ public class Inicio extends JFrame {
 		
 		nombrePc = new IdentificarPc().getIdentificacion(RUTAPC);
 		
+		/*
 		if(nombrePc.equals("mahc13p")){
+			
 			acrobatAntiguo = true;
 			rutaFocoAcrobat = "cal\\FocoAcrobat2.exe";
 			rutaFocoAcrobatV = "cal\\FocoAcrobatV2.exe";
+			
+			
+			rutaFocoAcrobat = rutaFocoAcrobat2015v7;
 		}
-		else if(  	nombrePc.toLowerCase().contains("mahc03p") ||
+		else 
+			*/
+		
+		if(  	nombrePc.toLowerCase().contains("mahc03p") ||
+				nombrePc.toLowerCase().contains("mahc01p") ||
 					nombrePc.toLowerCase().contains("mahc35p") ||
 					nombrePc.toLowerCase().contains("mahc04p") ||
+					nombrePc.toLowerCase().contains("mahc13p") ||
+					nombrePc.toLowerCase().contains("mahc17p") ||
 					nombrePc.toLowerCase().contains("mahc21p") 
 				){
 			
 			rutaFocoAcrobat = rutaFocoAcrobat2015v7;
+			
 		}
+
 		
 		excel = new LeerExcel();
 		
